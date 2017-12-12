@@ -11,6 +11,7 @@
 
 #include "copyright.h"
 #include "system.h"
+#include <sys/time.h>
 
 // testnum is set in main.cc
 int testnum = 1;
@@ -35,6 +36,103 @@ SimpleThread(int which)
     }
 }
 
+// Test cases
+
+void ThreadForTest0(int which)
+{
+    int num;
+    long int cnt = 0;
+
+    for(num = 0; num < 5; num++)
+    {
+        for(long int i =0; i < 1000000000; i++)
+            cnt++;
+
+        printf("*** ThreadForTest1 thread %d looped %d times \n ", which, num);
+        currentThread -> Yield();
+    }
+}
+
+void 
+ThreadForTest1(int which)
+{
+    int num;
+    long int cnt = 0;
+
+    for(num = 0; num < 5; num++)
+    {
+        for(long int i =0; i < 1500000000; i++)
+            cnt++;
+
+        printf("*** ThreadForTest1 thread %d looped %d times \n ", which, num);
+        currentThread -> Yield();
+    }
+}
+
+void 
+ThreadForTest2(int which)
+{
+    int num; 
+    long int cnt = 0;
+
+    for(num = 0; num < 5; num++)
+    {
+        for(long int i =0; i<2000000000; i++)
+            cnt++;
+
+        printf("*** ThreadForTest2 thread %d looped %d times \n ", which, num);
+        currentThread -> Yield();
+    }
+}
+
+
+void
+ThreadForTest3(int which)
+{
+    int num;
+    long int cnt = 0;
+
+    for(num = 0; num < 5; num++)
+    {
+        for(int long i = 0; i < 2500000000; i++)
+            cnt++;
+
+        printf("*** ThreadForTest3 thread %d looped %d times \n ", which, num);
+        currentThread -> Yield();
+
+    }
+}
+
+
+void
+PriorityQueueTest()
+{
+    DEBUG('t', "Entering Test for Priority Queue");
+
+    Thread *myThread1 = new Thread("Thread1 Created");
+    Thread *myThread2 = new Thread("Thread2 Created");
+    Thread *myThread3 = new Thread("Thread3 Created");
+
+    currentThread -> priority = 0;
+
+    myThread1 -> priority = 1;
+    myThread2 -> priority = 2;
+    myThread3 -> priority = 3;
+
+    struct timeval tv;
+    gettimeofday(&tv,NULL);
+
+    unsigned long time_in_micros = 1000000 * tv.tv_sec + tv.tv_usec;
+    currentThread->startTime=time_in_micros;
+
+    myThread1 -> Fork(ThreadForTest1, 1);
+    myThread2 -> Fork(ThreadForTest2, 2);
+    myThread3 -> Fork(ThreadForTest3, 3);
+
+    ThreadForTest0(0);
+
+}
+//
 //----------------------------------------------------------------------
 // ThreadTest1
 // 	Set up a ping-pong between two threads, by forking a thread 
@@ -52,6 +150,7 @@ ThreadTest1()
     SimpleThread(0);
 }
 
+
 //----------------------------------------------------------------------
 // ThreadTest
 // 	Invoke a test routine.
@@ -61,12 +160,12 @@ void
 ThreadTest()
 {
     switch (testnum) {
-    case 1:
-	ThreadTest1();
-	break;
-    default:
-	printf("No test specified.\n");
-	break;
+        case 1:
+	       PriorityQueueTest();
+	       break;
+        default:
+	       printf("No test specified.\n");
+	       break;
     }
 }
 
