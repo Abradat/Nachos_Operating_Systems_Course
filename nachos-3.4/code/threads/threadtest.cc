@@ -45,7 +45,7 @@ void ThreadForTest0(int which)
 
     for(num = 0; num < 5; num++)
     {
-        for(long int i =0; i < 1000000000; i++)
+        for(long int i =0; i < 100; i++)
             cnt++;
 
         printf("*** ThreadForTest1 thread %d looped %d times \n ", which, num);
@@ -61,7 +61,7 @@ ThreadForTest1(int which)
 
     for(num = 0; num < 5; num++)
     {
-        for(long int i =0; i < 1500000000; i++)
+        for(long int i =0; i < 150; i++)
             cnt++;
 
         printf("*** ThreadForTest1 thread %d looped %d times \n ", which, num);
@@ -77,7 +77,7 @@ ThreadForTest2(int which)
 
     for(num = 0; num < 5; num++)
     {
-        for(long int i =0; i<2000000000; i++)
+        for(long int i =0; i<200; i++)
             cnt++;
 
         printf("*** ThreadForTest2 thread %d looped %d times \n ", which, num);
@@ -94,7 +94,7 @@ ThreadForTest3(int which)
 
     for(num = 0; num < 5; num++)
     {
-        for(int long i = 0; i < 2500000000; i++)
+        for(int long i = 0; i < 250; i++)
             cnt++;
 
         printf("*** ThreadForTest3 thread %d looped %d times \n ", which, num);
@@ -125,14 +125,106 @@ PriorityQueueTest()
     unsigned long time_in_micros = 1000000 * tv.tv_sec + tv.tv_usec;
     currentThread->startTime=time_in_micros;
 
-    myThread1 -> Fork(ThreadForTest1, 1);
+    
     myThread2 -> Fork(ThreadForTest2, 2);
+    myThread1 -> Fork(ThreadForTest1, 1);
     myThread3 -> Fork(ThreadForTest3, 3);
 
     ThreadForTest0(0);
 
 }
 //
+
+// SJF Test Functions
+void 
+SJFThreadForTest0(int which)
+{
+    int num;
+    long int cnt = 0;
+
+    for(num = 0; num < 5; num++)
+    {
+        for(long int i =0; i < 1000000000; i++)
+            cnt++;
+
+        printf("*** SJFThreadForTest1 thread %d looped %d times \n ", which, num);
+    }
+    currentThread -> Yield();
+}
+
+void 
+SJFThreadForTest1(int which)
+{
+    int num;
+    long int cnt = 0;
+
+    for(num = 0; num < 5; num++)
+    {
+        for(long int i =0; i < 1500000000; i++)
+            cnt++;
+
+        printf("*** SJFThreadForTest1 thread %d looped %d times \n ", which, num);
+    }
+    currentThread -> Yield();
+}
+
+void 
+SJFThreadForTest2(int which)
+{
+    int num; 
+    long int cnt = 0;
+
+    for(num = 0; num < 5; num++)
+    {
+        for(long int i =0; i<2000000000; i++)
+            cnt++;
+
+        printf("*** SJFThreadForTest2 thread %d looped %d times \n ", which, num);
+        
+    }
+    currentThread -> Yield();
+}
+
+
+void
+SJFThreadForTest3(int which)
+{
+    int num;
+    long int cnt = 0;
+
+    for(num = 0; num < 5; num++)
+    {
+        for(int long i = 0; i < 2500000000; i++)
+            cnt++;
+
+        printf("*** SJFThreadForTest3 thread %d looped %d times \n ", which, num);
+    }
+    currentThread -> Yield();
+}
+
+void
+SJFTest()
+{
+    DEBUG('t', "Entering Test for SJF");
+
+    Thread *myThread1 = new Thread("Thread1 Created");
+    Thread *myThread2 = new Thread("Thread2 Created");
+    Thread *myThread3 = new Thread("Thread3 Created");
+
+    struct timeval tv;
+    gettimeofday(&tv,NULL);
+
+    unsigned long time_in_micros = 1000000 * tv.tv_sec + tv.tv_usec;
+    currentThread->startTime=time_in_micros;
+
+    
+    myThread1 -> Fork(SJFThreadForTest1, 1);
+    myThread2 -> Fork(SJFThreadForTest2, 2);
+    myThread3 -> Fork(SJFThreadForTest3, 3);
+
+    SJFThreadForTest0(0);
+
+}
 //----------------------------------------------------------------------
 // ThreadTest1
 // 	Set up a ping-pong between two threads, by forking a thread 

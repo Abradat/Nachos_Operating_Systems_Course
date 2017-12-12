@@ -82,6 +82,8 @@ class Thread {
 
   public:
 
+    unsigned long startTime;
+    unsigned long finishTime; 
     int priority = -1;
     Thread(char* debugName);		// initialize a Thread 
     ~Thread(); 				// deallocate a Thread

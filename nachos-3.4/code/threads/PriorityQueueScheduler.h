@@ -13,7 +13,7 @@
 class PriorityQueueScheduler:public Scheduler {
 public:
 	PriorityQueueScheduler();
-	virtual ~PriorityQueueScheduler();
+	~PriorityQueueScheduler();
 
 	Thread* FindNextToRun();
 	void ReadyToRun(Thread* thread);
