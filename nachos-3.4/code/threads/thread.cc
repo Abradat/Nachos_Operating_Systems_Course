@@ -64,6 +64,14 @@ Thread::~Thread()
 	DeallocBoundedArray((char *) stack, StackSize * sizeof(int));
 }
 
+
+void Thread::setStartTime(long int startTime) {
+    startRunningTime = startTime;
+}
+
+long Thread::getStartTime() {
+    return startRunningTime;
+}
 //----------------------------------------------------------------------
 // Thread::Fork
 // 	Invoke (*func)(arg), allowing caller and callee to execute 
@@ -317,4 +325,6 @@ Thread::RestoreUserState()
     for (int i = 0; i < NumTotalRegs; i++)
 	machine->WriteRegister(i, userRegisters[i]);
 }
+
+
 #endif

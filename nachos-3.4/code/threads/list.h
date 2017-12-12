@@ -15,6 +15,7 @@
 
 #include "copyright.h"
 #include "utility.h"
+#include "thread.h"
 
 // The following class defines a "list element" -- which is
 // used to keep track of one item on a list.  It is equivalent to a
@@ -57,6 +58,8 @@ class List {
     // Routines to put/get items on/off list in order (sorted by key)
     void SortedInsert(void *item, int sortKey);	// Put item into list
     void *SortedRemove(int *keyPtr); 	  	// Remove first item from list
+
+    ListElement* find(Thread* threadptr);
 
   private:
     ListElement *first;  	// Head of the list, NULL if list is empty

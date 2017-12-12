@@ -236,3 +236,10 @@ List::SortedRemove(int *keyPtr)
     return thing;
 }
 
+ListElement* List::find(Thread *threadptr) {
+    ListElement* currentElement = first;
+    while (currentElement != NULL){
+        if(currentElement->item == threadptr) break;
+    }
+    return currentElement;
+}

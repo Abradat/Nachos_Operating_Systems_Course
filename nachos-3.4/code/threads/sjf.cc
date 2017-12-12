@@ -1,5 +1,9 @@
 #include "sjf.h"
 
+sjf::sjf()
+{
+
+}
 void
 sjf::ReadyToRun (Thread *thread)
 {
@@ -25,14 +29,19 @@ void sjf::Run(Thread *nextThread) {
 
 
     currentThread->setStartTime(ms);
-    ListElement* foundedElement = livethread->find(oldThread);
+    ListElement* foundedElement = livethread->find(nextThread);
     if(foundedElement != NULL){
-        save_time * temp = ((save_time *)foundedElement->item);
+        save_time* temp = ((save_time *)foundedElement->item);
         temp->setduration(ms - temp->getthreadptr()->getStartTime());
     } else{
         save_time* new_time = new save_time();
-        new_time->setthreadptr(oldThread);
+
+        save_time * temp = ((save_time *)foundedElement->item);
+
+        new_time->setthreadptr(nextThread);
         new_time->setduration(ms - temp->getthreadptr()->getStartTime());
         livethread->Append(new_time);
     }
+
 }
+
