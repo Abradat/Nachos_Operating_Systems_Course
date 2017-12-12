@@ -50,7 +50,8 @@ THREAD_H =../threads/copyright.h\
 	../machine/stats.h\
 	../machine/timer.h\
 	../threads/PriorityQueueScheduler.h\
-	../threads/struct.h
+	../threads/struct.h\
+	../threads/sjf.h
 
 THREAD_C =../threads/main.cc\
 	../threads/list.cc\
@@ -66,12 +67,13 @@ THREAD_C =../threads/main.cc\
 	../machine/stats.cc\
 	../machine/timer.cc\
 	../threads/PriorityQueueScheduler.cc\
-	../threads/struct.cc
+	../threads/struct.cc\
+	../threads/sjf.cc
 
 THREAD_S = ../threads/switch.s
 
 THREAD_O =main.o list.o scheduler.o synch.o synchlist.o system.o thread.o \
-	utility.o threadtest.o interrupt.o stats.o sysdep.o timer.o PriorityQueueScheduler.o struct.o
+	utility.o threadtest.o interrupt.o stats.o sysdep.o timer.o PriorityQueueScheduler.o struct.o sjf.o
 
 USERPROG_H = ../userprog/addrspace.h\
 	../userprog/bitmap.h\

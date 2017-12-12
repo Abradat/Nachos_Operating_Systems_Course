@@ -1,8 +1,4 @@
-#include "copyright.h"
 #include "sjf.h"
-#include "system.h"
-#include "struct.h"
-#include <sys/time.h>
 
 void
 sjf::ReadyToRun (Thread *thread)

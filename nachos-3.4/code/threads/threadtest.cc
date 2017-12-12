@@ -255,6 +255,11 @@ ThreadTest()
         case 1:
 	       PriorityQueueTest();
 	       break;
+           
+        case 2:
+            SJFTest();
+            break;
+
         default:
 	       printf("No test specified.\n");
 	       break;

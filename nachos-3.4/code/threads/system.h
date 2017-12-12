@@ -13,6 +13,7 @@
 #include "thread.h"
 #include "scheduler.h"
 #include "PriorityQueueScheduler.h"
+#include "sjf.h"
 #include "interrupt.h"
 #include "stats.h"
 #include "timer.h"
