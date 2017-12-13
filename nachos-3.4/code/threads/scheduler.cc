@@ -67,7 +67,6 @@ Scheduler::ReadyToRun (Thread *thread)
 //	Thread is removed from the ready list.
 //----------------------------------------------------------------------
 
-Thread *
 Scheduler::FindNextToRun ()
 {
     return (Thread *)readyList->Remove();
@@ -87,10 +86,11 @@ Scheduler::FindNextToRun ()
 //	"nextThread" is the thread to be put into the CPU.
 //----------------------------------------------------------------------
 
+Thread *oldThread;
 void
 Scheduler::Run (Thread *nextThread)
 {
-    Thread *oldThread = currentThread;
+    oldThread = currentThread;
     
 #ifdef USER_PROGRAM			// ignore until running user programs 
     if (currentThread->space != NULL) {	// if this thread is a user program,

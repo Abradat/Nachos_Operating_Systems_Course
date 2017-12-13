@@ -14,7 +14,7 @@
 #include <sys/time.h>
 
 // testnum is set in main.cc
-int testnum = 1;
+int testnum = 2;
 
 //----------------------------------------------------------------------
 // SimpleThread

@@ -38,7 +38,7 @@ void sjf::Run(Thread *nextThread) {
 
         save_time * temp = ((save_time *)foundedElement->item);
 
-        new_time->setthreadptr(nextThread);
+        new_time->setthreadptr(oldThread);
         new_time->setduration(ms - temp->getthreadptr()->getStartTime());
         livethread->Append(new_time);
     }
