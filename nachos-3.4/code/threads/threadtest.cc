@@ -14,7 +14,7 @@
 #include <sys/time.h>
 
 // testnum is set in main.cc
-int testnum = 1;
+int testnum = 2;
 
 //----------------------------------------------------------------------
 // SimpleThread
@@ -225,6 +225,98 @@ SJFTest()
     SJFThreadForTest0(0);
 
 }
+
+/// Multi level Queue test Functions
+void
+MLQThreadForTest0(int which)
+{
+    int num;
+    long int cnt = 0;
+
+    for(num = 0; num < 5; num++)
+    {
+        for(long int i =0; i < 1000000000; i++)
+            cnt++;
+
+        printf("*** MLQThreadForTest1 thread %d looped %d times \n ", which, num);
+    }
+    currentThread -> Yield();
+}
+
+void
+MLQThreadForTest1(int which)
+{
+    int num;
+    long int cnt = 0;
+
+    for(num = 0; num < 5; num++)
+    {
+        for(long int i =0; i < 1500000000; i++)
+            cnt++;
+
+        printf("*** MLQThreadForTest1 thread %d looped %d times \n ", which, num);
+    }
+    currentThread -> Yield();
+}
+
+void
+MLQThreadForTest2(int which)
+{
+    int num;
+    long int cnt = 0;
+
+    for(num = 0; num < 5; num++)
+    {
+        for(long int i =0; i<2000000000; i++)
+            cnt++;
+
+        printf("*** MLQThreadForTest2 thread %d looped %d times \n ", which, num);
+
+    }
+    currentThread -> Yield();
+}
+
+
+void
+MLQThreadForTest3(int which)
+{
+    int num;
+    long int cnt = 0;
+
+    for(num = 0; num < 5; num++)
+    {
+        for(int long i = 0; i < 2500000000; i++)
+            cnt++;
+
+        printf("*** SJFThreadForTest3 thread %d looped %d times \n ", which, num);
+    }
+    currentThread -> Yield();
+}
+
+void
+MLQTest()
+{
+    DEBUG('t', "Entering Test for MLQ");
+
+    Thread *myThread1 = new Thread("Thread1 Created");
+    Thread *myThread2 = new Thread("Thread2 Created");
+    Thread *myThread3 = new Thread("Thread3 Created");
+
+    struct timeval tv;
+    gettimeofday(&tv,NULL);
+
+    unsigned long time_in_micros = 1000000 * tv.tv_sec + tv.tv_usec;
+    currentThread->startTime=time_in_micros;
+
+
+    myThread1 -> Fork(MLQThreadForTest1, 1);
+    myThread2 -> Fork(MLQThreadForTest2, 2);
+    myThread3 -> Fork(MLQThreadForTest3, 3);
+
+    MLQThreadForTest0(0);
+
+}
+
 //----------------------------------------------------------------------
 // ThreadTest1
 // 	Set up a ping-pong between two threads, by forking a thread 
@@ -258,6 +350,10 @@ ThreadTest()
            
         case 2:
             SJFTest();
+            break;
+
+        case 3:
+            MLQTest();
             break;
 
         default:

@@ -240,6 +240,19 @@ ListElement* List::find(Thread *threadptr) {
     ListElement* currentElement = first;
     while (currentElement != NULL){
         if(currentElement->item == threadptr) break;
+        currentElement = currentElement->next;
     }
     return currentElement;
+}
+
+void List::removeElement(Thread *threadptr){
+  ListElement* curr = first,*par = first;
+  while(curr != NULL){
+    if(curr->item == threadptr){
+      par->next = curr->next;
+      break;
+    }
+    par = curr;
+    curr = curr->next;
+  }
 }

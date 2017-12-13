@@ -135,6 +135,7 @@ Initialize(int argc, char **argv)
     //scheduler = new Scheduler();		// initialize the ready queue
     scheduler = new PriorityQueueScheduler(); // priority queue
     //scheduler = new sjf();
+    // scheduler = new multilev();
 
     if (randomYield)				// start the timer (if needed)
 	timer = new Timer(TimerInterruptHandler, 0, randomYield);

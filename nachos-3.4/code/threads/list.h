@@ -61,6 +61,8 @@ class List {
 
     ListElement* find(Thread* threadptr);
 
+    void removeElement(Thread* threadptr); //removing specified thread from the list
+
   private:
     ListElement *first;  	// Head of the list, NULL if list is empty
     ListElement *last;		// Last element of list
