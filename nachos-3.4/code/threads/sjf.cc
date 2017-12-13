@@ -1,9 +1,13 @@
 #include "sjf.h"
 
-sjf::sjf()
-{
-
+sjf::sjf(){
+  mylist = new List;
 }
+
+sjf::~sjf(){
+  delete mylist;
+}
+
 void
 sjf::ReadyToRun (Thread *thread)
 {
@@ -44,4 +48,6 @@ void sjf::Run(Thread *nextThread) {
     }
 
 }
-
+void sjf::delelement(Thread *threadptr){
+	readyList->removeElement(threadptr);
+}
