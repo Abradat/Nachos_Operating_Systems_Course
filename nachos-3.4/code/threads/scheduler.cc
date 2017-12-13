@@ -27,6 +27,8 @@
 // 	Initialize the list of ready but not running threads to empty.
 //----------------------------------------------------------------------
 
+Thread *oldThread;
+
 Scheduler::Scheduler()
 { 
     readyList = new List; 
@@ -86,7 +88,7 @@ Scheduler::FindNextToRun ()
 //	"nextThread" is the thread to be put into the CPU.
 //----------------------------------------------------------------------
 
-Thread *oldThread;
+
 void
 Scheduler::Run (Thread *nextThread)
 {

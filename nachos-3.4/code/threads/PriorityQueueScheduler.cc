@@ -27,3 +27,6 @@ void PriorityQueueScheduler::ReadyToRun(Thread* thread) {
 	priorityQueueList->SortedInsert((void*) thread,thread->priority);
 }
 
+void PriorityQueueScheduler::delelement(Thread *threadptr){
+	priorityQueueList->removeElement(threadptr);
+}

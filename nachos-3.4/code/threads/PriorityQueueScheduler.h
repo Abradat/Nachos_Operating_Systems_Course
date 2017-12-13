@@ -17,9 +17,9 @@ public:
 
 	Thread* FindNextToRun();
 	void ReadyToRun(Thread* thread);
-
+	void delelement(Thread *threadptr); //function for deleting a specified thread from sjf list (used in multilevel queue algorithm)
 private:
-	List *priorityQueueList;
+	List *priorityQueueList; // Listing 
 
 };
 

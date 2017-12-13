@@ -21,7 +21,7 @@ public:
 					// list, if any, and return thread.
     void Run(Thread* nextThread);	// Cause nextThread to start running
     void Print();			// Print contents of ready list
-
+    void delelement(Thread* threadptr); //function for deleting a specified thread from sjf list (used in multilevel queue algorithm)
   private:
 
     List *readyList;
