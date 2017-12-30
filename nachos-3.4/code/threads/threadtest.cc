@@ -14,7 +14,7 @@
 #include <sys/time.h>
 
 // testnum is set in main.cc
-int testnum = 2;
+int testnum = 1;
 
 //----------------------------------------------------------------------
 // SimpleThread
@@ -126,9 +126,9 @@ PriorityQueueTest()
     currentThread->startTime=time_in_micros;
 
     
+    myThread3 -> Fork(ThreadForTest3, 3);
     myThread2 -> Fork(ThreadForTest2, 2);
     myThread1 -> Fork(ThreadForTest1, 1);
-    myThread3 -> Fork(ThreadForTest3, 3);
 
     ThreadForTest0(0);
 
