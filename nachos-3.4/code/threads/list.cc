@@ -17,7 +17,6 @@
 
 #include "copyright.h"
 #include "list.h"
-#include "thread.h"
 
 //----------------------------------------------------------------------
 // ListElement::ListElement
@@ -237,10 +236,3 @@ List::SortedRemove(int *keyPtr)
     return thing;
 }
 
-ListElement* List::find(Thread *threadptr) {
-    ListElement* currentElement = first;
-    while (currentElement != NULL){
-        if(currentElement->item == threadptr) break;
-    }
-    return currentElement;
-}

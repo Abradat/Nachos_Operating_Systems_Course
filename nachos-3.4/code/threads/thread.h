@@ -102,8 +102,6 @@ class Thread {
     char* getName() { return (name); }
     void Print() { printf("%s, ", name); }
 
-    void setStartTime(long int startTime);
-    long getStartTime();
   private:
     // some of the private data for this class is listed above
     
@@ -112,7 +110,6 @@ class Thread {
 					// (If NULL, don't deallocate stack)
     ThreadStatus status;		// ready, running or blocked
     char* name;
-    long int startRunningTime;
 
     void StackAllocate(VoidFunctionPtr func, int arg);
     					// Allocate a stack for thread.
