@@ -37,8 +37,10 @@
 #ifndef THREAD_H
 #define THREAD_H
 
+#include <cstdio>
 #include "copyright.h"
 #include "utility.h"
+#include "synch.h"
 
 #ifdef USER_PROGRAM
 #include "machine.h"
@@ -80,12 +82,29 @@ class Thread {
     int* stackTop;			 // the current stack pointer
     int machineState[MachineStateSize];  // all registers except for stackTop
 
+    //------------ aliak --------
+
+    // added for join implementation.
+
+    int join; //we see it as a boolean that shows if a thread can join or not.
+
+    int joinValue; // it keeps value for thread's join.
+
+    int readyToJoin; // shows that a thread is ready to be deleted.
+
+    Lock* lock; // lock variable in order to handle joins.
+
+    //----------------------------
   public:
 
     unsigned long startTime;
     unsigned long finishTime; 
     int priority = -1;
-    Thread(char* debugName);		// initialize a Thread 
+    //-- aliak --
+    Thread(char* debugName, int join = 0);		// initialize a Thread. we added join in constructor in order to
+                                                // assign join for every thread that we initialize to see if they are
+                                                // joinable or not.
+    //-----------
     ~Thread(); 				// deallocate a Thread
 					// NOTE -- thread being deleted
 					// must not be running when delete 
@@ -108,6 +127,18 @@ class Thread {
 
     void setStartTime(long int startTime);
     long int getStartTime();
+
+    //-------- aliak ------------
+
+    void join();// this method will allow parent thread to wait for child thread till it completes its work.
+
+    int getJoinValue(); // to get of joinValue
+
+    void setJoinValue(int value); // to set of joinValue
+
+    int canJoin(); // to see if it can join or not
+
+    //---------------------------
 
   private:
     // some of the private data for this class is listed above

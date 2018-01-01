@@ -1,0 +1,3 @@
+/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/cmake-build-debug/CMakeFiles/Nachos_Operating_Systems_Course.dir

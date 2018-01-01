@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="Nachos_Operating_Systems_Course"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Nachos_Operating_Systems_Course">
+				<Option output="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/cmake-build-debug/Nachos_Operating_Systems_Course" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/6"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/6"/>
+					<Add directory="/usr/include/c++/6/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/6/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/cmake-build-debug/Makefile&quot;  VERBOSE=1 Nachos_Operating_Systems_Course"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Nachos_Operating_Systems_Course/fast">
+				<Option output="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/cmake-build-debug/Nachos_Operating_Systems_Course" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/6"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/6"/>
+					<Add directory="/usr/include/c++/6/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/6/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/cmake-build-debug/Makefile&quot;  VERBOSE=1 Nachos_Operating_Systems_Course/fast"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/LICENSE">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/Necessary_Packages/cse120su10-nachos.tar.gz">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/Necessary_Packages/mips-x86.linux-xgcc.tgz">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/README.md">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/COPYRIGHT">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/README">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/c++example/copyright.h">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/c++example/inheritstack.cc">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/c++example/inheritstack.h">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/c++example/list.cc">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/c++example/list.h">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/c++example/stack.cc">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/c++example/stack.h">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/c++example/templatestack.cc">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/c++example/templatestack.h">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/bin/coff.h">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/bin/coff2flat.c">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/bin/coff2noff.c">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/bin/d.c">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/bin/disasm.c">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/bin/encode.h">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/bin/execute.c">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/bin/instr.h">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/bin/int.h">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/bin/main.c">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/bin/noff.h">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/bin/opstrings.c">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/bin/out.c">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/bin/system.c">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/filesys/directory.cc">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/filesys/directory.h">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/filesys/filehdr.cc">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/filesys/filehdr.h">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/filesys/filesys.cc">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/filesys/filesys.h">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/filesys/fstest.cc">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/filesys/openfile.cc">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/filesys/openfile.h">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/filesys/synchdisk.cc">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/filesys/synchdisk.h">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/machine/console.cc">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/machine/console.h">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/machine/disk.cc">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/machine/disk.h">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/machine/interrupt.cc">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/machine/interrupt.h">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/machine/machine.cc">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/machine/machine.h">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/machine/mipssim.cc">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/machine/mipssim.h">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/machine/network.cc">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/machine/network.h">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/machine/stats.cc">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/machine/stats.h">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/machine/sysdep.cc">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/machine/sysdep.h">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/machine/timer.cc">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/machine/timer.h">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/machine/translate.cc">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/machine/translate.h">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/network/nettest.cc">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/network/post.cc">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/network/post.h">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/test/halt.c">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/test/matmult.c">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/test/shell.c">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/test/sort.c">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/test/start.c">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/threads/MultiLevelQueueScheduler.cc">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/threads/MultiLevelQueueScheduler.h">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/threads/PriorityQueueScheduler.cc">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/threads/PriorityQueueScheduler.h">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/threads/bool.h">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/threads/copyright.h">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/threads/list.cc">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/threads/list.h">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/threads/main.cc">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/threads/scheduler.cc">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/threads/scheduler.h">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/threads/sjf.cc">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/threads/sjf.h">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/threads/stdarg-old.h">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/threads/stdarg-tmp.h">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/threads/struct.cc">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/threads/struct.h">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/threads/switch.c">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/threads/switch.h">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/threads/synch.cc">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/threads/synch.h">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/threads/synchlist.cc">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/threads/synchlist.h">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/threads/system.cc">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/threads/system.h">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/threads/thread.cc">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/threads/thread.h">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/threads/threadtest.cc">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/threads/utility.cc">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/threads/utility.h">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/userprog/addrspace.cc">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/userprog/addrspace.h">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/userprog/bitmap.cc">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/userprog/bitmap.h">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/userprog/exception.cc">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/userprog/progtest.cc">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/code/userprog/syscall.h">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/doc/README">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/doc/course.ps">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/doc/course.tex">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/doc/filesys.ps">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/doc/filesys.tex">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/doc/mechanics.ps">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/doc/mechanics.tex">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/doc/nethelp.ps">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/doc/nethelp.tex">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/doc/network.ps">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/doc/network.tex">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/doc/overview.ps">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/doc/overview.tex">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/doc/reading.ms">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/doc/thread.ps">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/doc/thread.tex">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/doc/userprog.ps">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/doc/userprog.tex">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/doc/vm.ps">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/nachos-3.4/doc/vm.tex">
+			<Option target="Nachos_Operating_Systems_Course"/>
+		</Unit>
+		<Unit filename="/home/mammalofski/Desktop/Nachos_Operating_Systems_Course/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
