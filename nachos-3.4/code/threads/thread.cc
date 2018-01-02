@@ -378,6 +378,16 @@ Thread::setJoinValue(int tValue)
     joinValue = tValue;
 }
 
+//----------------------------------------------------------------------
+// int Thread::canJoin
+// this method will check that a thread is joinable or not.
+//----------------------------------------------------------------------
+int
+Thread::canJoin()
+{
+
+    return joinFlag;
+}
 
 #ifdef USER_PROGRAM
 #include "machine.h"
