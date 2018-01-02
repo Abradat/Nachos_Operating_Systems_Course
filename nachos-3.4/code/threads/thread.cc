@@ -19,6 +19,8 @@
 #include "switch.h"
 #include "synch.h"
 #include "system.h"
+#include "../machine/sysdep.h"
+#include "../machine/interrupt.h"
 
 #define STACK_FENCEPOST 0xdeadbeef	// this is put at the top of the
 					// execution stack, for detecting 
@@ -30,10 +32,13 @@
 //	Thread::Fork.
 //
 //	"threadName" is an arbitrary string, useful for debugging.
+// aliak : Pjoin variable added in order to make thread join available.
+// aliak : some variables added in thread class to control thread join.
+// aliak : New Variables : lock, conditionVariable, joinFlag, readyToJoin, priority.
 //----------------------------------------------------------------------
 
-Thread::Thread(char* threadName)
-{
+Thread::Thread(char* threadName, int Pjoin) {
+
     name = threadName;
     stackTop = NULL;
     stack = NULL;
@@ -41,7 +46,27 @@ Thread::Thread(char* threadName)
 #ifdef USER_PROGRAM
     space = NULL;
 #endif
+
+
+    lock = new Lock("Threads lock");
+    conditionVariable = new Condition("Threads condition variable");
+
+
+
+    //Indicates if thread is joinable
+    joinFlag = Pjoin;
+
+    //Indicates if thread can be joined
+    readyToJoin = 0;
+
+    //The priority of the thread default value
+    priority = 0;
+
+
 }
+
+
+
 
 //----------------------------------------------------------------------
 // Thread::~Thread
@@ -61,7 +86,7 @@ Thread::~Thread()
 
     ASSERT(this != currentThread);
     if (stack != NULL)
-	DeallocBoundedArray((char *) stack, StackSize * sizeof(int));
+	 DeallocBoundedArray((char *) stack, StackSize * sizeof(int));
 }
 
 
@@ -290,6 +315,48 @@ Thread::StackAllocate (VoidFunctionPtr func, int arg)
     machineState[InitialArgState] = arg;
     machineState[WhenDonePCState] = (int) ThreadFinish;
 }
+
+//----------------------------------------------------------------------
+// Thread::join
+// This function will call by the parent thread to allow parent wait for
+// child thread till it got terminated.
+//
+// Note child must be joinable i.e. instance variable join must be non-zero
+// Note joined can only be called once
+// Note a thread cannot call join on itself
+// Note join can only be called after fork has been called
+//
+//
+// Panic if thread is not joinable i.e. is 0.
+// Panic if join has been called prior
+// Panic if calling thread is itself
+// Panic if thread has not been forked.
+//----------------------------------------------------------------------
+
+void
+Thread::join()
+{
+
+    ASSERT(joinFlag == 1);  // check joinFlag in order to be sure that the thread is joinable
+    ASSERT(readyToJoin == 0); // cannot have joined before
+    ASSERT(currentThread != this); // to check that the same thread didn't request for join.
+    ASSERT(isForked == 1); //to check that thread is forked before join request.
+
+    lock->Acquire();
+
+    readyToJoin = 1;  // child thread is ready to join
+                      // child thread can be deleted
+
+    //wake up child if it is asleep
+    conditionVariable->Signal(lock);
+    conditionVariable->Wait(lock);//go to sleep
+    conditionVariable->Signal(lock);// wake up child threas
+
+    lock->Release();
+
+
+}
+
 
 #ifdef USER_PROGRAM
 #include "machine.h"

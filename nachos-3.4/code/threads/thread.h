@@ -42,6 +42,7 @@
 #include "utility.h"
 #include "synch.h"
 
+
 #ifdef USER_PROGRAM
 #include "machine.h"
 #include "addrspace.h"
@@ -62,7 +63,11 @@
 enum ThreadStatus { JUST_CREATED, RUNNING, READY, BLOCKED };
 
 // external function, dummy routine whose sole job is to call Thread::Print
-extern void ThreadPrint(int arg);	 
+extern void ThreadPrint(int arg);
+
+
+class Lock;
+class Condition;
 
 // The following class defines a "thread control block" -- which
 // represents a single thread of execution.
@@ -86,7 +91,7 @@ class Thread {
 
     // added for join implementation.
 
-    int join; //we see it as a boolean that shows if a thread can join or not.
+    int joinFlag; //we see it as a boolean that shows if a thread can join or not.
 
     int joinValue; // it keeps value for thread's join.
 
@@ -94,17 +99,22 @@ class Thread {
 
     Lock* lock; // lock variable in order to handle joins.
 
+    Condition* conditionVariable; // conditionVariable for the parent/child.
+
+
     //----------------------------
   public:
 
     unsigned long startTime;
     unsigned long finishTime; 
     int priority = -1;
-    //-- aliak --
+
+
+    //-------- aliak ----------
     Thread(char* debugName, int join = 0);		// initialize a Thread. we added join in constructor in order to
                                                 // assign join for every thread that we initialize to see if they are
                                                 // joinable or not.
-    //-----------
+    //-------------------------
     ~Thread(); 				// deallocate a Thread
 					// NOTE -- thread being deleted
 					// must not be running when delete 

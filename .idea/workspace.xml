@@ -12,19 +12,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="231b1a70-f957-4e55-b813-1007284576cc" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/nachos-3.4/code/bin/coff2noff" afterPath="$PROJECT_DIR$/nachos-3.4/code/bin/coff2noff" />
-      <change beforePath="$PROJECT_DIR$/nachos-3.4/code/prepfile.bash" afterPath="$PROJECT_DIR$/nachos-3.4/code/prepfile.bash" />
-      <change beforePath="$PROJECT_DIR$/nachos-3.4/code/test/halt" afterPath="$PROJECT_DIR$/nachos-3.4/code/test/halt" />
-      <change beforePath="$PROJECT_DIR$/nachos-3.4/code/test/matmult" afterPath="$PROJECT_DIR$/nachos-3.4/code/test/matmult" />
-      <change beforePath="$PROJECT_DIR$/nachos-3.4/code/test/shell" afterPath="$PROJECT_DIR$/nachos-3.4/code/test/shell" />
-      <change beforePath="$PROJECT_DIR$/nachos-3.4/code/test/sort" afterPath="$PROJECT_DIR$/nachos-3.4/code/test/sort" />
-      <change beforePath="$PROJECT_DIR$/nachos-3.4/code/threads/Makefile" afterPath="$PROJECT_DIR$/nachos-3.4/code/threads/Makefile" />
-      <change beforePath="$PROJECT_DIR$/nachos-3.4/code/threads/nachos" afterPath="$PROJECT_DIR$/nachos-3.4/code/threads/nachos" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/nachos-3.4/code/threads/thread.cc" afterPath="$PROJECT_DIR$/nachos-3.4/code/threads/thread.cc" />
       <change beforePath="$PROJECT_DIR$/nachos-3.4/code/threads/thread.h" afterPath="$PROJECT_DIR$/nachos-3.4/code/threads/thread.h" />
-      <change beforePath="$PROJECT_DIR$/nachos-3.4/code/userprog/Makefile" afterPath="$PROJECT_DIR$/nachos-3.4/code/userprog/Makefile" />
-      <change beforePath="$PROJECT_DIR$/nachos-3.4/code/userprog/nachos" afterPath="$PROJECT_DIR$/nachos-3.4/code/userprog/nachos" />
-      <change beforePath="$PROJECT_DIR$/nachos-3.4/code/vm/Makefile" afterPath="$PROJECT_DIR$/nachos-3.4/code/vm/Makefile" />
-      <change beforePath="$PROJECT_DIR$/nachos-3.4/code/vm/nachos" afterPath="$PROJECT_DIR$/nachos-3.4/code/vm/nachos" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -36,40 +26,71 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file leaf-file-name="addrspace.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/nachos-3.4/code/userprog/addrspace.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="528">
-              <caret line="24" column="33" lean-forward="false" selection-start-line="24" selection-start-column="33" selection-end-line="24" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="thread.h" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/nachos-3.4/code/threads/thread.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1593">
-              <caret line="142" column="10" lean-forward="false" selection-start-line="142" selection-start-column="10" selection-end-line="142" selection-end-column="10" />
-              <folding>
-                <element signature="e#1564#1581#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="addrspace.cc" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/nachos-3.4/code/userprog/addrspace.cc">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1364">
-              <caret line="62" column="11" lean-forward="false" selection-start-line="62" selection-start-column="11" selection-end-line="62" selection-end-column="11" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.49166667">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
+          <file leaf-file-name="thread.h" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/nachos-3.4/code/threads/thread.h">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="647">
+                  <caret line="99" column="5" lean-forward="true" selection-start-line="99" selection-start-column="5" selection-end-line="99" selection-end-column="5" />
+                  <folding>
+                    <element signature="e#1564#1581#0" expanded="true" />
+                    <element signature="e#1667#1710#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="synch.h" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/nachos-3.4/code/threads/synch.h">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="501">
+                  <caret line="71" column="14" lean-forward="false" selection-start-line="71" selection-start-column="14" selection-end-line="71" selection-end-column="14" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="synch.cc" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/nachos-3.4/code/threads/synch.cc">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="582">
+                  <caret line="104" column="18" lean-forward="false" selection-start-line="104" selection-start-column="11" selection-end-line="104" selection-end-column="18" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="thread.cc" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/nachos-3.4/code/threads/thread.cc">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="408">
+                  <caret line="350" column="13" lean-forward="false" selection-start-line="350" selection-start-column="13" selection-end-line="350" selection-end-column="13" />
+                  <folding>
+                    <element signature="e#761#783#0" expanded="true" />
+                    <element signature="e#1762#1775#0" expanded="true" />
+                    <element signature="e#12428#13582#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>finish</find>
+      <find>join</find>
+      <find>PCState</find>
+      <find>asse</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -79,6 +100,7 @@
       <list>
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/nachos-3.4/code/threads/thread.h" />
+        <option value="$PROJECT_DIR$/nachos-3.4/code/threads/thread.cc" />
       </list>
     </option>
   </component>
@@ -89,10 +111,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="80" />
+    <option name="x" value="1920" />
     <option name="y" value="-5" />
-    <option name="width" value="1841" />
-    <option name="height" value="1086" />
+    <option name="width" value="1920" />
+    <option name="height" value="1085" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -127,6 +149,13 @@
               <item name="Nachos_Operating_Systems_Course" type="462c0819:PsiDirectoryNode" />
               <item name="nachos-3.4" type="462c0819:PsiDirectoryNode" />
               <item name="code" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Nachos_Operating_Systems_Course" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="Nachos_Operating_Systems_Course" type="462c0819:PsiDirectoryNode" />
+              <item name="nachos-3.4" type="462c0819:PsiDirectoryNode" />
+              <item name="code" type="462c0819:PsiDirectoryNode" />
+              <item name="machine" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Nachos_Operating_Systems_Course" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
@@ -189,25 +218,25 @@
       <option name="presentableId" value="Default" />
       <updated>1514789216789</updated>
       <workItem from="1514789226067" duration="3709000" />
-      <workItem from="1514794300221" duration="40000" />
+      <workItem from="1514794300221" duration="8977000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3749000" />
+    <option name="totallyTimeSpent" value="12686000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="80" y="-5" width="1841" height="1086" extended-state="6" />
+    <frame x="1920" y="-5" width="1920" height="1085" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19032082" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1328125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -218,6 +247,25 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1328125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -252,6 +300,7 @@
           <caret line="142" column="10" lean-forward="true" selection-start-line="142" selection-start-column="10" selection-end-line="142" selection-end-column="10" />
           <folding>
             <element signature="e#1564#1581#0" expanded="true" />
+            <element signature="e#1667#1710#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -279,12 +328,113 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/nachos-3.4/code/threads/system.cc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2574">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nachos-3.4/code/threads/struct.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nachos-3.4/code/threads/struct.cc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nachos-3.4/code/threads/main.cc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-673">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nachos-3.4/code/machine/console.cc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2521">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nachos-3.4/code/machine/interrupt.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1320">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nachos-3.4/code/machine/machine.cc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3335">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nachos-3.4/code/machine/translate.cc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1945">
+          <caret line="203" column="29" lean-forward="false" selection-start-line="203" selection-start-column="29" selection-end-line="203" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nachos-3.4/code/threads/utility.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="75" column="8" lean-forward="false" selection-start-line="75" selection-start-column="8" selection-end-line="75" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/nachos-3.4/code/threads/thread.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1593">
-          <caret line="142" column="10" lean-forward="false" selection-start-line="142" selection-start-column="10" selection-end-line="142" selection-end-column="10" />
+        <state relative-caret-position="647">
+          <caret line="99" column="5" lean-forward="true" selection-start-line="99" selection-start-column="5" selection-end-line="99" selection-end-column="5" />
           <folding>
             <element signature="e#1564#1581#0" expanded="true" />
+            <element signature="e#1667#1710#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nachos-3.4/code/threads/synch.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="501">
+          <caret line="71" column="14" lean-forward="false" selection-start-line="71" selection-start-column="14" selection-end-line="71" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nachos-3.4/code/threads/synch.cc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="582">
+          <caret line="104" column="18" lean-forward="false" selection-start-line="104" selection-start-column="11" selection-end-line="104" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nachos-3.4/code/threads/thread.cc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="350" column="13" lean-forward="false" selection-start-line="350" selection-start-column="13" selection-end-line="350" selection-end-column="13" />
+          <folding>
+            <element signature="e#761#783#0" expanded="true" />
+            <element signature="e#1762#1775#0" expanded="true" />
+            <element signature="e#12428#13582#0" expanded="true" />
           </folding>
         </state>
       </provider>
