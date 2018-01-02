@@ -54,13 +54,21 @@ extern Table * TablePtr;
 //
 //	"which" is the kind of exception.  The list of possible exceptions 
 //	are in machine.h.
+
+
+
 //----------------------------------------------------------------------
 
 //----------------------------------------------------------------------
 //implementing Table class methods.
-
+// Table Cons , Alloc , Get
 
 //----------------------------------------------------------------------
+
+/*
+  Table's constructor.
+*/
+
 Table::Table(int size)
 {
 
@@ -78,6 +86,27 @@ Table::Table(int size)
 
 }
 
+/*
+  Alloc : this will allocate tableptr in the table for later usage.
+
+*/
+
+int Table::Alloc(void * object){
+
+    lock->Acquire(); // because we want to change the table.
+
+    for(int i = 0; i < tableSize; i++) {
+        if(tableptr[i] == NULL) {
+            tableptr[i] = object; // assign an object in the table if the table cell is null or initialized.
+            lock->Release(); // after making changes on the table the lock will be released.
+            return i; // return changed index of the table.
+        }
+    }
+
+    lock->Release();
+
+    return -1;
+}
 
 
 void
