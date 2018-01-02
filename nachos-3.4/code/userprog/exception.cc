@@ -56,6 +56,30 @@ extern Table * TablePtr;
 //	are in machine.h.
 //----------------------------------------------------------------------
 
+//----------------------------------------------------------------------
+//implementing Table class methods.
+
+
+//----------------------------------------------------------------------
+Table::Table(int size)
+{
+
+    lock = new Lock("lock for the table in syscall"); // this is the variable that locks the table
+                                                      // when systemcall arises.
+
+    tableSize = size; // this will assign the table size with the size that we give the function.
+
+    tableptr = new void*[size]; // this will initialize the table pointer with the given size of table.
+
+    for(int i = 0; i < size; i++) {
+        tableptr[i] = NULL;
+    }
+
+
+}
+
+
+
 void
 ExceptionHandler(ExceptionType which)
 {
