@@ -91,7 +91,8 @@ Table::Table(int size)
 
 */
 
-int Table::Alloc(void * object){
+int
+Table::Alloc(void * object){
 
     lock->Acquire(); // because we want to change the table.
 
@@ -106,6 +107,26 @@ int Table::Alloc(void * object){
     lock->Release();
 
     return -1;
+}
+
+/*
+ *Get : it takes an index of the table and return a pointer that refers to that index of the table.
+ */
+void *
+Table:: Get(int index) {
+    lock->Acquire(); // again because we want to work with the table we arise the lock till others can't work
+                     // while we are changing it.
+
+    if(index >= tableSize || index < 0 ) { // here we check the correctness of the index.
+        lock->Release();
+        return NULL;
+    }
+
+    void * toReturn = tableptr[index]; // if the index is correct we return the correspond cell of the table.
+
+    lock->Release(); // after we finished our work with the table we release the lock.
+
+    return toReturn; // return the correspond cell of the table.
 }
 
 
