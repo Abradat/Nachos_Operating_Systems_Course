@@ -24,6 +24,14 @@
 #include "copyright.h"
 #include "system.h"
 #include "syscall.h"
+#include "Table.h"
+#include "SynchConsole.h"
+#include "Pipe.h"
+#include "../threads/thread.h"
+#include "../machine/sysdep.h"
+
+extern Table * TablePtr;
+
 
 //----------------------------------------------------------------------
 // ExceptionHandler
@@ -60,4 +68,25 @@ ExceptionHandler(ExceptionType which)
 	printf("Unexpected user mode exception %d %d\n", which, type);
 	ASSERT(FALSE);
     }
+}
+
+int Join2(SpaceId id) {
+
+    Thread * joinThread = (Thread *) TablePtr->Get(id-1);
+
+    if(joinThread == NULL) {
+        fprintf(stderr, "Incorrect ID, cannot join\n");
+        return -65535;
+    }
+
+    if(!joinThread->canJoin()) {
+        fprintf(stderr, "Thread unjoinable, cannot join\n");
+        return -65535;
+    }
+
+    joinThread->join();
+
+    int retVal = joinThread->getJoinValue();
+
+    return retVal;
 }
