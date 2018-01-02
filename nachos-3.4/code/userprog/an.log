@@ -1,0 +1,38 @@
+'../test/halt'
+f:main
+switch main -> ../test/halt
+0 : 0
+0 : 4
+1 : 80
+1 : 84
+10 : 108
+1 : 88
+10 : 104
+1 : 92
+1 : 96
+1 : 64
+1 : 68
+1 : 100
+1 : 104
+10 : 108
+1 : 108
+10 : 104
+1 : 112
+1 : 116
+0 : 8
+0 : 12
+0 : 32
+0 : 36
+exit: ../test/halt
+f:../test/halt
+No threads ready or runnable, and no pending interrupts.
+Assuming the program completed.
+Machine halting!
+
+Ticks: total 100, idle 53, system 30, user 17
+Disk I/O: reads 0, writes 0
+Console I/O: reads 0, writes 0
+Paging: faults 0
+Network I/O: packets received 0, sent 0
+
+Cleaning up...
