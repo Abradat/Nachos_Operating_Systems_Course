@@ -357,6 +357,27 @@ Thread::join()
 
 }
 
+//----------------------------------------------------------------------
+// int Thread::getJoinValue
+// this method will Return the join value of the thread
+//----------------------------------------------------------------------
+
+int
+Thread::getJoinValue()
+{
+    return joinValue;
+}
+
+//----------------------------------------------------------------------
+// int Thread::setJoinValue
+// this method will assign value to thread's join value.
+//----------------------------------------------------------------------
+void
+Thread::setJoinValue(int tValue)
+{
+    joinValue = tValue;
+}
+
 
 #ifdef USER_PROGRAM
 #include "machine.h"
