@@ -22,6 +22,9 @@
 #include "scheduler.h"
 #include "system.h"
 
+
+Thread *oldThread;
+
 //----------------------------------------------------------------------
 // Scheduler::Scheduler
 // 	Initialize the list of ready but not running threads to empty.
@@ -90,7 +93,7 @@ Scheduler::FindNextToRun ()
 void
 Scheduler::Run (Thread *nextThread)
 {
-    Thread *oldThread = currentThread;
+    oldThread = currentThread;
     
 #ifdef USER_PROGRAM			// ignore until running user programs 
     if (currentThread->space != NULL) {	// if this thread is a user program,

@@ -104,6 +104,55 @@ class Instruction {
 // The procedures in this class are defined in machine.cc, mipssim.cc, and
 // translate.cc.
 
+class Stack
+{
+  private:
+	int top;
+	int capacity;
+	int *storage;
+
+  public:
+	Stack(int capacity)
+	{
+		ASSERT(capacity > 0);
+
+		storage = new int[capacity];
+		this->capacity = capacity;
+		top = -1;
+	}
+
+	void push(int value)
+	{
+		ASSERT(top < capacity);
+		top++;
+		storage[top] = value;
+	}
+
+	int peek()
+	{
+		ASSERT(top != -1);
+		return storage[top];
+	}
+
+	int pop()
+	{
+		ASSERT(top != -1);
+		int value = peek();
+		top--;
+
+		return value;
+	}
+
+	bool isEmpty()
+	{
+		return (top == -1);
+	}
+
+	~Stack()
+	{
+		delete[] storage;
+	}
+};
 class Machine {
   public:
     Machine(bool debug);	// Initialize the simulation of the hardware
@@ -144,13 +193,17 @@ class Machine {
 				// system call or other exception.  
 
     void Debugger();		// invoke the user program debugger
-    void DumpState();		// print the user CPU and memory state 
+    void DumpState();		// print the user CPU and memory state
 
 
+	int GetFreePhysicalPageNumber();
+	void AddFreePhysicalPageNumber(int pgNumber);
+
+	void IncrementPCReg();
 // Data structures -- all of these are accessible to Nachos kernel code.
 // "public" for convenience.
 //
-// Note that *all* communication between the user program and the kernel 
+// Note that *all* communication between the user program and the kernel
 // are in terms of these data structures.
 
     char *mainMemory;		// physical memory to store user program,
@@ -181,12 +234,14 @@ class Machine {
 
     TranslationEntry *pageTable;
     unsigned int pageTableSize;
+	void InitFreePhysicalPages();
 
   private:
     bool singleStep;		// drop back into the debugger after each
 				// simulated instruction
     int runUntilTime;		// drop back into the debugger when simulated
 				// time reaches this value
+				Stack *freePhysicalPages;
 };
 
 extern void ExceptionHandler(ExceptionType which);

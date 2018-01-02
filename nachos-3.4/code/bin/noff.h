@@ -4,7 +4,7 @@
  *     Basically, we only know about three types of segments:
  *	code (read-only), initialized data, and unitialized data
  */
-
+#pragma once
 #define NOFFMAGIC	0xbadfad 	/* magic number denoting Nachos 
 					 * object code file 
 					 */

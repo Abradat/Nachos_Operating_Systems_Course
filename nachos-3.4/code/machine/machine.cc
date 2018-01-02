@@ -71,6 +71,9 @@ Machine::Machine(bool debug)
     pageTable = NULL;
 #endif
 
+    freePhysicalPages = new Stack(NumPhysPages);
+    InitFreePhysicalPages();
+
     singleStep = debug;
     CheckEndian();
 }
@@ -82,6 +85,7 @@ Machine::Machine(bool debug)
 
 Machine::~Machine()
 {
+    delete freePhysicalPages;
     delete [] mainMemory;
     if (tlb != NULL)
         delete [] tlb;
@@ -211,4 +215,34 @@ void Machine::WriteRegister(int num, int value)
 	// DEBUG('m', "WriteRegister %d, value %d\n", num, value);
 	registers[num] = value;
     }
+
+void Machine::InitFreePhysicalPages()
+{
+    for (int i = NumPhysPages - 1; i >= 0; --i)
+       freePhysicalPages->push(i);
+
+    // for (int i = 0; i < NumPhysPages; ++i)
+    //     freePhysicalPages->push(i);
+}
+
+int Machine::GetFreePhysicalPageNumber()
+{
+    if (freePhysicalPages->isEmpty())
+        return -1;
+
+    return freePhysicalPages->pop();
+}
+
+void Machine::AddFreePhysicalPageNumber(int pgNumber)
+{
+    freePhysicalPages->push(pgNumber);
+}
+
+void Machine::IncrementPCReg()
+{
+    int pcAfter = registers[NextPCReg] + 4;
+    registers[PrevPCReg] = registers[PCReg];
+    registers[PCReg] = registers[NextPCReg];
+    registers[NextPCReg] = pcAfter;
+}
 
