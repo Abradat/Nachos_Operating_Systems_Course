@@ -65,6 +65,9 @@ extern Table * TablePtr;
 
 //----------------------------------------------------------------------
 
+
+// aliak: join syscall completed.
+
 /*
   Table's constructor.
 */
