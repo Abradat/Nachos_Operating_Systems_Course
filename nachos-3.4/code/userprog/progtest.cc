@@ -13,8 +13,14 @@
 #include "console.h"
 #include "addrspace.h"
 #include "synch.h"
+#include "Table.h"
+
+
+int MAXPROCESS = 14;
 
 MemoryManager * memoryManager;
+Table * TablePtr;
+
 
 //----------------------------------------------------------------------
 // StartProcess
@@ -29,6 +35,8 @@ StartProcess(char *filename)
     AddrSpace *space;
 
     memoryManager = new MemoryManager(NumPhysPages);
+    TablePtr = new Table(MAXPROCESS);
+
 
     if (executable == NULL) {
 	printf("Unable to open file %s\n", filename);

@@ -24,6 +24,80 @@
 #include "copyright.h"
 #include "system.h"
 #include "syscall.h"
+#include "Table.h"
+
+
+extern Table * TablePtr;
+
+
+
+// Table Class //
+
+/*
+ * Table's constructor
+ */
+Table::Table(int size){
+    lock = new Lock("lock for the table in syscall");
+    tableSize = size;
+    tableptr = new void*[size];
+
+    for(int i = 0; i < size; i++) {
+        tableptr[i] = NULL;
+    }
+}
+
+/*
+ * Alloc - Allocates void pointers to a table for later access
+ */
+int Table::Alloc(void * object){
+    lock->Acquire();
+
+    for(int i = 0; i < tableSize; i++) {
+        if(tableptr[i] == NULL) {
+            tableptr[i] = object;
+            lock->Release();
+            return i;
+        }
+    }
+
+    lock->Release();
+
+    return -1;
+}
+
+/*
+ * Get - Gets a void pointer at a particular index in the table
+ */
+void * Table:: Get(int index) {
+    lock->Acquire();
+
+    if(index >= tableSize || index < 0 ) {
+        lock->Release();
+        return NULL;
+    }
+
+    void * toReturn = tableptr[index];
+
+    lock->Release();
+
+    return toReturn;
+}
+
+/*
+ * Release - Removes a void pointer from the table at a particular index
+ */
+void Table::Release(int index) {
+    lock->Acquire();
+
+    if(index >= tableSize || index < 0 ) {
+        lock->Release();
+        return;
+    }
+
+    tableptr[index] = NULL;
+
+    lock->Release();
+}
 
 //----------------------------------------------------------------------
 // ExceptionHandler
@@ -59,6 +133,9 @@ void forker(void (*func)()) {
     AddrSpace *space = currentThread->space;
     Thread *forkedThread = new Thread("Forked Thread", 1);
     forkedThread->space = space;//space of forkedThread = allocated space
+
+    TablePtr->Alloc((void *)(forkedThread));
+
 
 
 
