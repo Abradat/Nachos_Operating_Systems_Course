@@ -122,6 +122,23 @@ void Table::Release(int index) {
 //	are in machine.h.
 //----------------------------------------------------------------------
 
+/*
+ * ForkedThread -> Forked routine to run the forked thread
+ */
+void ForkedThread(int funcPtr) {
+    currentThread->space->InitRegisters();		// set the initial register values
+    currentThread->space->RestoreState();		// load page table register
+
+    machine->WriteRegister(PCReg, funcPtr);
+    machine->WriteRegister(NextPCReg, funcPtr+4);
+
+    machine->Run();			// jump to the user progam
+    ASSERT(FALSE);			// machine->Run never returns;
+    // the address space exits
+    // by doing the syscall "exit"
+}
+
+
 void forker(void (*func)()) {
     int funcPtr = (int) (func);
     if (!currentThread->space->allocateThreadSpace()) {//when we dont have space for allocating
@@ -135,6 +152,8 @@ void forker(void (*func)()) {
     forkedThread->space = space;//space of forkedThread = allocated space
 
     TablePtr->Alloc((void *)(forkedThread));
+    forkedThread->Fork(ForkedThread, funcPtr);
+
 
 
 
