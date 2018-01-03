@@ -60,7 +60,15 @@
 enum ThreadStatus { JUST_CREATED, RUNNING, READY, BLOCKED };
 
 // external function, dummy routine whose sole job is to call Thread::Print
-extern void ThreadPrint(int arg);	 
+extern void ThreadPrint(int arg);
+
+
+//Declare the existance of Lock and condition class so that they can be
+//used later
+class Lock;
+class Condition;
+
+
 
 // The following class defines a "thread control block" -- which
 // represents a single thread of execution.
@@ -79,9 +87,11 @@ class Thread {
     // THEY MUST be in this position for SWITCH to work.
     int* stackTop;			 // the current stack pointer
     int machineState[MachineStateSize];  // all registers except for stackTop
+    int priority;  // priority of running of the threads
 
-  public:
-    Thread(char* debugName);		// initialize a Thread 
+
+public:
+    Thread(char* debugName, int join=0);		// initialize a Thread
     ~Thread(); 				// deallocate a Thread
 					// NOTE -- thread being deleted
 					// must not be running when delete 
@@ -114,6 +124,16 @@ class Thread {
     void StackAllocate(VoidFunctionPtr func, int arg);
     					// Allocate a stack for thread.
 					// Used internally by Fork()
+
+    int isForked; // boolean value to keep track when a thread was forked
+
+    int join; // boolean value to check if a thread can join
+
+    int readyToJoin; // ready to be deleted
+
+    Condition* cv; // cv for the parent/child
+
+    Lock* lock; // lock for the join
 
 #ifdef USER_PROGRAM
 // A thread running a user program actually has *two* sets of CPU registers -- 

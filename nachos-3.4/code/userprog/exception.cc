@@ -50,9 +50,16 @@
 
 void forker(void (*func)()) {
     int funcPtr = (int) (func);
-    if(!currentThread->space->allocateThreadSpace()) {//when we dont have space for allocating
+    if (!currentThread->space->allocateThreadSpace()) {//when we dont have space for allocating
         return;
     }
+    currentThread->SaveUserState();//save Registers
+    currentThread->RestoreUserState();//restore register and address of table to
+
+    AddrSpace *space = currentThread->space;
+    Thread *forkedThread = new Thread("Forked Thread", 1);
+    forkedThread->space = space;//space of forkedThread = allocated space
+
 
 }
 
