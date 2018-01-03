@@ -116,6 +116,7 @@ class Machine {
     int ReadRegister(int num);	// read the contents of a CPU register
 
     void WriteRegister(int num, int value);
+	void IncrementPCReg();
 				// store a value into a CPU register
 
 

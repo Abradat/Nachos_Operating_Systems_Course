@@ -48,16 +48,44 @@
 //	are in machine.h.
 //----------------------------------------------------------------------
 
+void forker(void (*func)()) {
+    machine->IncrementPCReg();
+}
+
 void
-ExceptionHandler(ExceptionType which)
-{
+ExceptionHandler(ExceptionType which) {
     int type = machine->ReadRegister(2);
 
-    if ((which == SyscallException) && (type == SC_Halt)) {
-	DEBUG('a', "Shutdown, initiated by user program.\n");
-   	interrupt->Halt();
+    if (which == SyscallException) {
+
+        if (type == SC_Halt) {
+            DEBUG('a', "Shutdown, initiated by user program.\n");
+            interrupt->Halt();
+
+
+        } else if (type == SC_Fork) {
+            DEBUG('a', "Called Fork, initiated by user program");
+
+            void (*a)() = (void (*)()) machine->ReadRegister(4);
+
+            forker(a);
+
+        } else if (type == SC_Exit) {
+            printf("exit: %s\n", currentThread->getName());
+            currentThread->Finish();
+            machine->IncrementPCReg();
+
+        }
     } else {
-	printf("Unexpected user mode exception %d %d\n", which, type);
-	ASSERT(FALSE);
+        printf("Unexpected user mode exception %d %d\n", which, type);
+        ASSERT(FALSE);
     }
+//
+//    if ((which == SyscallException) && (type == SC_Halt)) {
+//	DEBUG('a', "Shutdown, initiated by user program.\n");
+//   	interrupt->Halt();
+//    } else {
+//	printf("Unexpected user mode exception %d %d\n", which, type);
+//	ASSERT(FALSE);
+//    }
 }

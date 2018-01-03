@@ -11,10 +11,14 @@
  */
 
 #include "syscall.h"
-
+void test_fork(){
+    Exit(10);
+//    printf("lol...");
+}
 int
 main()
 {
+    Fork(&test_fork);
     Halt();
     /* not reached */
 }
