@@ -27,7 +27,7 @@
 #include "Table.h"
 
 
-extern Table * TablePtr;
+extern Table *TablePtr;
 
 
 
@@ -36,12 +36,12 @@ extern Table * TablePtr;
 /*
  * Table's constructor
  */
-Table::Table(int size){
+Table::Table(int size) {
     lock = new Lock("lock for the table in syscall");
     tableSize = size;
-    tableptr = new void*[size];
+    tableptr = new void *[size];
 
-    for(int i = 0; i < size; i++) {
+    for (int i = 0; i < size; i++) {
         tableptr[i] = NULL;
     }
 }
@@ -49,11 +49,11 @@ Table::Table(int size){
 /*
  * Alloc - Allocates void pointers to a table for later access
  */
-int Table::Alloc(void * object){
+int Table::Alloc(void *object) {
     lock->Acquire();
 
-    for(int i = 0; i < tableSize; i++) {
-        if(tableptr[i] == NULL) {
+    for (int i = 0; i < tableSize; i++) {
+        if (tableptr[i] == NULL) {
             tableptr[i] = object;
             lock->Release();
             return i;
@@ -68,15 +68,15 @@ int Table::Alloc(void * object){
 /*
  * Get - Gets a void pointer at a particular index in the table
  */
-void * Table:: Get(int index) {
+void *Table::Get(int index) {
     lock->Acquire();
 
-    if(index >= tableSize || index < 0 ) {
+    if (index >= tableSize || index < 0) {
         lock->Release();
         return NULL;
     }
 
-    void * toReturn = tableptr[index];
+    void *toReturn = tableptr[index];
 
     lock->Release();
 
@@ -89,7 +89,7 @@ void * Table:: Get(int index) {
 void Table::Release(int index) {
     lock->Acquire();
 
-    if(index >= tableSize || index < 0 ) {
+    if (index >= tableSize || index < 0) {
         lock->Release();
         return;
     }
@@ -126,14 +126,14 @@ void Table::Release(int index) {
  * ForkedThread -> Forked routine to run the forked thread
  */
 void ForkedThread(int funcPtr) {
-    currentThread->space->InitRegisters();		// set the initial register values
-    currentThread->space->RestoreState();		// load page table register
+    currentThread->space->InitRegisters();        // set the initial register values
+    currentThread->space->RestoreState();        // load page table register
 
     machine->WriteRegister(PCReg, funcPtr);
-    machine->WriteRegister(NextPCReg, funcPtr+4);
+    machine->WriteRegister(NextPCReg, funcPtr + 4);
 
-    machine->Run();			// jump to the user progam
-    ASSERT(FALSE);			// machine->Run never returns;
+    machine->Run();            // jump to the user progam
+    ASSERT(FALSE);            // machine->Run never returns;
     // the address space exits
     // by doing the syscall "exit"
 }
@@ -151,14 +151,17 @@ void forker(void (*func)()) {
     Thread *forkedThread = new Thread("Forked Thread", 1);
     forkedThread->space = space;//space of forkedThread = allocated space
 
-    TablePtr->Alloc((void *)(forkedThread));
+    TablePtr->Alloc((void *) (forkedThread));
     forkedThread->Fork(ForkedThread, funcPtr);
-
-
-
-
-
 }
+
+/*
+ * yielder - Syscall routine for Yield
+ */
+void yielder() {
+    currentThread->Yield();
+}
+
 
 void
 ExceptionHandler(ExceptionType which) {
@@ -178,11 +181,17 @@ ExceptionHandler(ExceptionType which) {
 
             forker(a);
 
-        } else if (type == SC_Exit) {
+        }
+        else if (type == SC_Exit) {
             printf("exit: %s\n", currentThread->getName());
             currentThread->Finish();
             machine->IncrementPCReg();
 
+        }
+        else if(type == SC_Yield) {
+            DEBUG('a', "Called Yield, initiated by user program");
+
+            yielder();
         }
     } else {
         printf("Unexpected user mode exception %d %d\n", which, type);

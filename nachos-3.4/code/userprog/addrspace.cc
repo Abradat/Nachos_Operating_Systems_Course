@@ -182,6 +182,22 @@ AddrSpace::InitRegisters()
 void AddrSpace::SaveState() 
 {}
 
+
+/*
+ * Getter for pageTable
+ */
+TranslationEntry * AddrSpace::getPageTable() {
+    return pageTable;
+}
+
+
+/*
+ * Getter for numPages
+ */
+unsigned int AddrSpace::getNumPages() {
+    return numPages;
+}
+
 //----------------------------------------------------------------------
 // AddrSpace::RestoreState
 // 	On a context switch, restore the machine state so that

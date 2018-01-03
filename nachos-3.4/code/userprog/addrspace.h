@@ -56,6 +56,9 @@ class AddrSpace {
     void InitRegisters();		// Initialize user-level CPU registers,
 					// before jumping to user code
 
+    TranslationEntry * getPageTable(); // Getter for pageTable
+    unsigned int getNumPages(); // Getter for numPages
+
     void SaveState();			// Save/restore address space-specific
     // for now!
     int allocateThreadSpace();
