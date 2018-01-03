@@ -19,6 +19,10 @@
 #include "system.h"
 #include "addrspace.h"
 #include "noff.h"
+#include "bitmap.h"
+#include "synch.h"
+
+
 #ifdef HOST_SPARC
 #include <strings.h>
 #endif
@@ -48,6 +52,9 @@ SwapHeader (NoffHeader *noffH)
 	noffH->uninitData.inFileAddr = WordToHost(noffH->uninitData.inFileAddr);
 }
 
+
+
+
 //----------------------------------------------------------------------
 // AddrSpace::AddrSpace
 // 	Create an address space to run a user program.
@@ -62,6 +69,7 @@ SwapHeader (NoffHeader *noffH)
 //
 //	"executable" is the file containing the object code to load into memory
 //----------------------------------------------------------------------
+
 
 AddrSpace::AddrSpace(OpenFile *executable)
 {
@@ -231,4 +239,33 @@ int AddrSpace::allocateThreadSpace()
     numPages = numPages + newPages;
 
     return 1;
+}
+
+// MemoryManager Class //
+
+/*
+ * MemoryManager Constructor
+ */
+MemoryManager::MemoryManager(int numpages) {
+    lock = new Lock("Memory Manager Lock");
+
+    pages = new BitMap(numpages); // make map for n pages
+}
+
+
+/*
+ * MemoryManager Destructor
+ */
+MemoryManager::~MemoryManager() {
+    // need to know if all pages need to be cleared before deleting
+    delete pages;
+    pages = 0;
+    delete lock;
+}
+int MemoryManager::AllocPage() {
+    lock->Acquire();
+    int page = pages->Find();
+    lock->Release();
+
+    return page;
 }

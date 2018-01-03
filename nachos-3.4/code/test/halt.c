@@ -18,7 +18,7 @@ void test_fork(){
 int
 main()
 {
-    Fork(&test_fork);
+//    Fork(&test_fork);
     Halt();
     /* not reached */
 }

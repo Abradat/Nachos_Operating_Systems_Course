@@ -14,6 +14,8 @@
 #include "addrspace.h"
 #include "synch.h"
 
+MemoryManager * memoryManager;
+
 //----------------------------------------------------------------------
 // StartProcess
 // 	Run a user program.  Open the executable, load it into
@@ -25,6 +27,8 @@ StartProcess(char *filename)
 {
     OpenFile *executable = fileSystem->Open(filename);
     AddrSpace *space;
+
+    memoryManager = new MemoryManager(NumPhysPages);
 
     if (executable == NULL) {
 	printf("Unable to open file %s\n", filename);
