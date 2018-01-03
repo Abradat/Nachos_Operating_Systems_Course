@@ -1,0 +1,709 @@
+@startuml
+actor User
+
+"threads/main" -> "userprog/progtest" : void StartProcess(char *filename)
+"userprog/progtest" -> "filesys/filesys" : OpenFile * Open(char *name)
+"filesys/filesys" -> "filesys/directory" : void FetchFrom(OpenFile *file)
+"filesys/directory" -> "filesys/openfile" : int ReadAt(char *into, int numBytes, int position)
+"filesys/openfile" -> "filesys/filehdr" : int FileLenght()
+
+' filesys/openfile" -> "filesys/filehdr" : int FileLenght()
+"filesys/filehdr" --> "filesys/openfile" : <<int: number of bytes>>
+
+
+
+"filesys/openfile" -> "filesys/synchdisk" : void ReadSector(int sectorNumber, char* data)
+
+"filesys/synchdisk" -> "threads/synch" : void Acquire()
+
+' filesys/synchdisk" -> "threads/synch" : void Acquire()
+"threads/synch" --> "filesys/synchdisk" : <<ok>>
+
+
+
+"filesys/synchdisk" -> "machine/disk" : void ReadRequest(int sectorNumber, char* data)
+
+"machine/disk" -> "machine/disk" : int ComputeLatency(int newSector, bool writing)
+"machine/disk" -> "machine/disk" : int ModuloDiff(int to, int from)
+
+' machine/disk" -> "machine/disk" : int ModuloDiff(int to, int from)
+"machine/disk" --> "machine/disk" : <<int : Number of sectors of rotational Delay>>
+
+' machine/disk" -> "machine/disk" : int ComputeLatency(int newSector, bool writing)
+"machine/disk" --> "machine/disk" : <<int : LatencyDuration>>
+
+"machine/disk" -> "machine/sysdep" : void Lseek(int fd, int offset, int whence)
+
+' machine/disk" -> "machine/sysdep" : void Lseek(int fd, int offset, int whence)
+"machine/sysdep" --> "machine/disk" : <<ok>>
+
+"machine/disk" -> "threads/utility" : bool DebugIsEnabled(char flag)
+
+' machine/disk" -> "threads/utility" : bool DebugIsEnabled(char flag)
+"threads/utility" --> "machine/disk" : <<bool>>
+
+"machine/disk" -> "machine/disk" : static void PrintSector(bool writing, int sector, char* data)
+
+' machine/disk" -> "machine/disk" : static void PrintSector(bool writing, int sector, char* data)
+"machine/disk" --> "machine/disk" : <<ok>>
+
+"machine/disk" -> "machine/disk" : void UpdateLast(int newSector)
+
+' machine/disk" -> "machine/disk" : void UpdateLast(int newSector)
+"machine/disk" --> "machine/disk" : <<ok>>
+
+
+"machine/disk" -> "machine/interrupt" : void Schedule(VoidFunctionPtr handler, int arg, int fromNow, IntType type)
+
+"machine/interrupt" -> "threads/list" : void SortedInsert(void* item, int sortKey)
+
+' machine/interrupt" -> "threads/list" : void SortedInsert(void* item, int sortKey)
+"threads/list" --> "machine/interrupt" : <<ok>>
+
+' machine/disk" -> "machine/interrupt" : void Schedule(VoidFunctionPtr handler, int arg, int fromNow, IntType type)
+"machine/interrupt" --> "machine/disk" : <<ok>>
+
+
+' filesys/synchdisk" -> "machine/disk" : void ReadRequest(int sectorNumber, char* data)
+"machine/disk" --> "filesys/synchdisk" : <<ok>>
+
+
+"filesys/synchdisk" -> "threads/synch" : void P()
+
+"threads/synch" -> "threads/list" : void Append(void* item)
+
+"threads/list" -> "threads/list" : bool IsEmpty()
+
+' threads/list" -> "threads/list" : bool IsEmpty()
+"threads/list" --> "threads/list" : <<bool>>
+
+' threads/synch" -> "threads/list" : void Append(void* item)
+"threads/list" --> "threads/synch" : <<ok>>
+
+
+"threads/synch" -> "threads/thread" : void Sleep()
+
+"threads/thread" -> "machine/interrupt" : IntStatus getLevel()
+
+' threads/thread" -> "machine/interrupt" : IntStatus getLevel()
+"machine/interrupt" --> "threads/thread" : <<int : level>>
+
+"threads/thread" -> "threads/scheduler" : Thread* FindNextToRun()
+
+"threads/scheduler" -> "threads/list" : void* Remove()
+
+"threads/list" -> "threads/list" : void* SortedRemove(int* keyPtr)
+
+"threads/list" -> "threads/list" : bool IsEmpty()
+
+' threads/list" -> "threads/list" : bool IsEmpty()
+"threads/list" --> "threads/list" : <<bool>>
+
+' threads/list" -> "threads/list" : void* SortedRemove(int* keyPtr)
+"threads/list" --> "threads/list" : <<void* : thread>>
+
+
+' threads/scheduler" -> "threads/list" : void* Remove()
+"threads/list" --> "threads/scheduler" : <<void*>>
+
+' threads/thread" -> "threads/scheduler" : Thread* FindNextToRun()
+"threads/scheduler" --> "threads/thread" : <<Thread* : nextThread>>
+
+"threads/thread" -> "machine/interrupt" : Void Idle()
+
+
+"machine/interrupt" -> "machine/interrupt" : bool CheckIfDue(bool advanceClock)
+
+"machine/interrupt" -> "threads/utility" : bool DebugIsEnabled(char flag)
+
+' machine/interrupt" -> "threads/utility" : bool DebugIsEnabled(char flag)
+"threads/utility" --> "machine/interrupt" : <<bool>>
+
+"machine/interrupt" -> "machine/interrupt" : void DumpState()
+
+"machine/interrupt" -> "threads/list" : void Mapcar(VoidFunctionPtr func)
+
+' machine/interrupt" -> "threads/list" : void Mapcar(VoidFunctionPtr func)
+"threads/list" --> "machine/interrupt" : <<ok>>
+
+' machine/interrupt" -> "machine/interrupt" : void DumpState()
+"machine/interrupt" --> "machine/interrupt" : <<ok>>
+
+
+"machine/interrupt" -> "threads/list" : void* SortedRemove(int* keyPtr)
+
+"threads/list" -> "threads/list" : bool IsEmpty()
+
+' threads/list" -> "threads/list" : bool IsEmpty()
+"threads/list" --> "threads/list" : <<bool>>
+
+' machine/interrupt" -> "threads/list" : void* SortedRemove(int* keyPtr)
+"threads/list" --> "machine/interrupt" : <<void* : thread>>
+
+"machine/interrupt" -> "threads/list" : void SortedInsert(vod* item, int sortKey)
+
+"threads/list" -> "threads/list" : bool IsEmpty()
+
+' threads/list" -> "threads/list" : bool IsEmpty()
+"threads/list" --> "threads/list" : <<bool>>
+
+' machine/interrupt" -> "threads/list" : void SortedInsert(vod* item, int sortKey)
+"threads/list" --> "machine/interrupt" : <<ok>>
+
+"machine/interrupt" -> "threads/list" : bool IsEmpty()
+
+' machine/interrupt" -> "threads/list" : bool IsEmpty()
+"threads/list" --> "machine/interrupt" : <<bool>>
+
+"machine/interrupt" -> "threads/list" : void SortedInsert(vod* item, int sortKey)
+
+"threads/list" -> "threads/list" : bool IsEmpty()
+
+' threads/list" -> "threads/list" : bool IsEmpty()
+"threads/list" --> "threads/list" : <<bool>>
+
+' machine/interrupt" -> "threads/list" : void SortedInsert(vod* item, int sortKey)
+"threads/list" --> "machine/interrupt" : <<ok>>
+
+' machine/interrupt" -> "machine/interrupt" : bool CheckIfDue(bool advanceClock)
+"machine/interrupt" --> "machine/interrupt" : <<bool>>
+
+
+' threads/thread" -> "machine/interrupt" : Void Idle()
+"machine/interrupt" --> "threads/thread" : <<ok>>
+
+
+"threads/thread" -> "threads/scheduler" : void Run(Thread *nextThread)
+
+"threads/scheduler" -> "threads/thread" : void CheckOverflow()
+
+' threads/scheduler" -> "threads/thread" : void CheckOverflow()
+"threads/thread" --> "threads/scheduler" : <<ok>>
+
+"threads/scheduler" -> "threads/thread" : void setStatus(ThreadStatus st)
+
+' threads/scheduler" -> "threads/thread" : void setStatus(ThreadStatus st)
+"threads/thread" --> "threads/scheduler" : <<ok>>
+
+"threads/scheduler" -> "threads/thread" : char* getName()
+
+' threads/scheduler" -> "threads/thread" : char* getName()
+"threads/thread" --> "threads/scheduler" : <<char* : threadName>>
+
+"threads/scheduler" -> "threads/thread" : void SWITCH(Thread *oldThread, Thread *newThread)
+
+' threads/scheduler" -> "threads/thread" : void SWITCH(Thread *oldThread, Thread *newThread)
+"threads/thread" --> "threads/scheduler" : <<ok>>
+
+"threads/scheduler" -> "threads/thread" : void RestoreUserState()
+
+"threads/thread" -> "machine/machine" : void WriteRegister(int num, int value)
+
+' threads/thread" -> "machine/machine" : void WriteRegister(int num, int value)
+"machine/machine" --> "threads/thread" : <<ok>>
+
+'threads/scheduler" -> "threads/thread" : void RestoreUserState()
+"threads/thread" --> "threads/scheduler" : <<ok>>
+
+"threads/scheduler" -> "userprog/addrspace" : void RestoreState()
+
+' threads/scheduler" -> "userprog/addrspace" : void RestoreState()
+"userprog/addrspace" --> "threads/scheduler" : <<ok>>
+
+' threads/thread" -> "threads/scheduler" : void Run(Thread *nextThread)
+"threads/scheduler" --> "threads/thread" : <<ok>>
+
+
+' threads/synch" -> "threads/thread" : void Sleep()
+"threads/thread" --> "threads/synch" : <<ok>>
+
+
+"threads/synch" -> "machine/interrupt" : IntStatus SetLevel(IntStatus now)
+
+"machine/interrupt" -> "machine/interrupt" : void ChangeLevel(IntStatus old, IntStatus now)
+
+' machine/interrupt" -> "machine/interrupt" : void ChangeLevel(IntStatus old, IntStatus now)
+"machine/interrupt" --> "machine/interrupt" : <<ok>>
+
+"machine/interrupt" -> "machine/interrupt" : void OneTick()
+
+"machine/interrupt" -> "machine/interrupt" : void ChangeLevel(IntStatus old, IntStatus now)
+
+' machine/interrupt" -> "machine/interrupt" : void ChangeLevel(IntStatus old, IntStatus now)
+"machine/interrupt" --> "machine/interrupt" : <<ok>>
+
+
+
+"machine/interrupt" -> "machine/interrupt" : bool CheckIfDue(bool advanceClock)
+
+"machine/interrupt" -> "threads/utility" : bool DebugIsEnabled(char flag)
+
+' machine/interrupt" -> "threads/utility" : bool DebugIsEnabled(char flag)
+"threads/utility" --> "machine/interrupt" : <<bool>>
+
+"machine/interrupt" -> "machine/interrupt" : void DumpState()
+
+"machine/interrupt" -> "threads/list" : void Mapcar(VoidFunctionPtr func)
+
+' machine/interrupt" -> "threads/list" : void Mapcar(VoidFunctionPtr func)
+"threads/list" --> "machine/interrupt" : <<ok>>
+
+' machine/interrupt" -> "machine/interrupt" : void DumpState()
+"machine/interrupt" --> "machine/interrupt" : <<ok>>
+
+
+"machine/interrupt" -> "threads/list" : void* SortedRemove(int* keyPtr)
+
+"threads/list" -> "threads/list" : bool IsEmpty()
+
+' threads/list" -> "threads/list" : bool IsEmpty()
+"threads/list" --> "threads/list" : <<bool>>
+
+' machine/interrupt" -> "threads/list" : void* SortedRemove(int* keyPtr)
+"threads/list" --> "machine/interrupt" : <<void* : thread>>
+
+"machine/interrupt" -> "threads/list" : void SortedInsert(vod* item, int sortKey)
+
+"threads/list" -> "threads/list" : bool IsEmpty()
+
+' threads/list" -> "threads/list" : bool IsEmpty()
+"threads/list" --> "threads/list" : <<bool>>
+
+' machine/interrupt" -> "threads/list" : void SortedInsert(vod* item, int sortKey)
+"threads/list" --> "machine/interrupt" : <<ok>>
+
+"machine/interrupt" -> "threads/list" : bool IsEmpty()
+
+' machine/interrupt" -> "threads/list" : bool IsEmpty()
+"threads/list" --> "machine/interrupt" : <<bool>>
+
+"machine/interrupt" -> "threads/list" : void SortedInsert(vod* item, int sortKey)
+
+"threads/list" -> "threads/list" : bool IsEmpty()
+
+' threads/list" -> "threads/list" : bool IsEmpty()
+"threads/list" --> "threads/list" : <<bool>>
+
+' machine/interrupt" -> "threads/list" : void SortedInsert(vod* item, int sortKey)
+"threads/list" --> "machine/interrupt" : <<ok>>
+
+' machine/interrupt" -> "machine/interrupt" : bool CheckIfDue(bool advanceClock)
+"machine/interrupt" --> "machine/interrupt" : <<bool>>
+
+"machine/interrupt" -> "machine/interrupt" : void ChangeLevel(IntStatus old, IntStatus now)
+
+' machine/interrupt" -> "machine/interrupt" : void ChangeLevel(IntStatus old, IntStatus now)
+"machine/interrupt" --> "machine/interrupt" : <<ok>>
+
+
+
+
+
+loop
+"machine/interrupt" -> "threads/thread" : void Yield()
+
+"threads/thread" -> "machine/interrupt" : IntStatus SetLevel(IntStatus now)
+
+"machine/interrupt" -> "machine/interrupt" : void ChangeLevel(IntStatus old, IntStatus now)
+
+' machine/interrupt" -> "machine/interrupt" : void ChangeLevel(IntStatus old, IntStatus now)
+"machine/interrupt" --> "machine/interrupt" : <<ok>>
+
+"machine/interrupt" -> "machine/interrupt" : void OneTick()
+
+"machine/interrupt" -> "machine/interrupt" : void ChangeLevel(IntStatus old, IntStatus now)
+
+' machine/interrupt" -> "machine/interrupt" : void ChangeLevel(IntStatus old, IntStatus now)
+"machine/interrupt" --> "machine/interrupt" : <<ok>>
+
+
+
+"machine/interrupt" -> "machine/interrupt" : bool CheckIfDue(bool advanceClock)
+
+"machine/interrupt" -> "threads/utility" : bool DebugIsEnabled(char flag)
+
+' machine/interrupt" -> "threads/utility" : bool DebugIsEnabled(char flag)
+"threads/utility" --> "machine/interrupt" : <<bool>>
+
+"machine/interrupt" -> "machine/interrupt" : void DumpState()
+
+"machine/interrupt" -> "threads/list" : void Mapcar(VoidFunctionPtr func)
+
+' machine/interrupt" -> "threads/list" : void Mapcar(VoidFunctionPtr func)
+"threads/list" --> "machine/interrupt" : <<ok>>
+
+' machine/interrupt" -> "machine/interrupt" : void DumpState()
+"machine/interrupt" --> "machine/interrupt" : <<ok>>
+
+
+"machine/interrupt" -> "threads/list" : void* SortedRemove(int* keyPtr)
+
+"threads/list" -> "threads/list" : bool IsEmpty()
+
+' threads/list" -> "threads/list" : bool IsEmpty()
+"threads/list" --> "threads/list" : <<bool>>
+
+' machine/interrupt" -> "threads/list" : void* SortedRemove(int* keyPtr)
+"threads/list" --> "machine/interrupt" : <<void* : thread>>
+
+"machine/interrupt" -> "threads/list" : void SortedInsert(vod* item, int sortKey)
+
+"threads/list" -> "threads/list" : bool IsEmpty()
+
+' threads/list" -> "threads/list" : bool IsEmpty()
+"threads/list" --> "threads/list" : <<bool>>
+
+' machine/interrupt" -> "threads/list" : void SortedInsert(vod* item, int sortKey)
+"threads/list" --> "machine/interrupt" : <<ok>>
+
+"machine/interrupt" -> "threads/list" : bool IsEmpty()
+
+' machine/interrupt" -> "threads/list" : bool IsEmpty()
+"threads/list" --> "machine/interrupt" : <<bool>>
+
+"machine/interrupt" -> "threads/list" : void SortedInsert(vod* item, int sortKey)
+
+"threads/list" -> "threads/list" : bool IsEmpty()
+
+' threads/list" -> "threads/list" : bool IsEmpty()
+"threads/list" --> "threads/list" : <<bool>>
+
+' machine/interrupt" -> "threads/list" : void SortedInsert(vod* item, int sortKey)
+"threads/list" --> "machine/interrupt" : <<ok>>
+
+' machine/interrupt" -> "machine/interrupt" : bool CheckIfDue(bool advanceClock)
+"machine/interrupt" --> "machine/interrupt" : <<bool>>
+
+"machine/interrupt" -> "machine/interrupt" : void ChangeLevel(IntStatus old, IntStatus now)
+
+' machine/interrupt" -> "machine/interrupt" : void ChangeLevel(IntStatus old, IntStatus now)
+"machine/interrupt" --> "machine/interrupt" : <<ok>>
+
+"machine/interrupt" -> "threads/thread" : void Yield()
+
+
+
+' machine/interrupt" -> "threads/thread" : void Yield()
+"threads/thread" --> "machine/interrupt" : <<ok>>
+
+' machine/interrupt" -> "machine/interrupt" : void OneTick()
+"machine/interrupt" --> "machine/interrupt" : <<ok>>
+
+' threads/thread" -> "machine/interrupt" : IntStatus SetLevel(IntStatus now)
+"machine/interrupt" --> "threads/thread" : <<IntStatus : LevelOfOld>>
+
+
+"threads/thread" -> "threads/scheduler" : Thread* FindNextToRun()
+
+"threads/scheduler" -> "threads/list" : void* Remove()
+
+"threads/list" -> "threads/list" : void* SortedRemove(int* keyPtr)
+
+"threads/list" -> "threads/list" : bool IsEmpty()
+
+' threads/list" -> "threads/list" : bool IsEmpty()
+"threads/list" --> "threads/list" : <<bool>>
+
+' threads/list" -> "threads/list" : void* SortedRemove(int* keyPtr)
+"threads/list" --> "threads/list" : <<void* : thread>>
+
+
+' threads/scheduler" -> "threads/list" : void* Remove()
+"threads/list" --> "threads/scheduler" : <<void*>>
+
+' threads/thread" -> "threads/scheduler" : Thread* FindNextToRun()
+"threads/scheduler" --> "threads/thread" : <<Thread* : nextThread>>
+
+"threads/thread" -> "threads/scheduler" : void ReadyToRun(Thread *thread)
+
+"threads/scheduler" -> "threads/thread" : char* getName()
+
+' threads/scheduler" -> "threads/thread" : char* getName()
+"threads/thread" --> "threads/scheduler" : <<char* : threadName>>
+
+"threads/scheduler" -> "threads/thread" : void setStatus(ThreadStatus st)
+
+' threads/scheduler" -> "threads/thread" : void setStatus(ThreadStatus st)
+"threads/thread" --> "threads/scheduler" : <<ok>>
+
+"threads/scheduler" -> "threads/list" : void Append(void* item)
+
+"threads/list" -> "threads/list" : bool IsEmpty()
+
+' threads/list" -> "threads/list" : bool IsEmpty()
+"threads/list" --> "threads/list" : <<bool>>
+
+' threads/scheduler" -> "threads/list" : void Append(void* item)
+"threads/list" --> "threads/scheduler" : <<ok>>
+
+' threads/thread" -> "threads/scheduler" : void ReadyToRun(Thread *thread)
+"threads/scheduler" --> "threads/thread" : <<ok>>
+
+"threads/thread" -> "threads/scheduler" : void Run(Thread *nextThread)
+
+"threads/scheduler" -> "threads/thread" : void CheckOverflow()
+
+' threads/scheduler" -> "threads/thread" : void CheckOverflow()
+"threads/thread" --> "threads/scheduler" : <<ok>>
+
+"threads/scheduler" -> "threads/thread" : void setStatus(ThreadStatus st)
+
+' threads/scheduler" -> "threads/thread" : void setStatus(ThreadStatus st)
+"threads/thread" --> "threads/scheduler" : <<ok>>
+
+"threads/scheduler" -> "threads/thread" : char* getName()
+
+' threads/scheduler" -> "threads/thread" : char* getName()
+"threads/thread" --> "threads/scheduler" : <<char* : threadName>>
+
+"threads/scheduler" -> "threads/thread" : void SWITCH(Thread *oldThread, Thread *newThread)
+
+' threads/scheduler" -> "threads/thread" : void SWITCH(Thread *oldThread, Thread *newThread)
+"threads/thread" --> "threads/scheduler" : <<ok>>
+
+"threads/scheduler" -> "threads/thread" : void RestoreUserState()
+
+"threads/thread" -> "machine/machine" : void WriteRegister(int num, int value)
+
+' threads/thread" -> "machine/machine" : void WriteRegister(int num, int value)
+"machine/machine" --> "threads/thread" : <<ok>>
+
+'threads/scheduler" -> "threads/thread" : void RestoreUserState()
+"threads/thread" --> "threads/scheduler" : <<ok>>
+
+"threads/scheduler" -> "userprog/addrspace" : void RestoreState()
+
+' threads/scheduler" -> "userprog/addrspace" : void RestoreState()
+"userprog/addrspace" --> "threads/scheduler" : <<ok>>
+
+' threads/thread" -> "threads/scheduler" : void Run(Thread *nextThread)
+"threads/scheduler" --> "threads/thread" : <<ok>>
+
+"threads/thread" -> "machine/interrupt" : IntStatus SetLevel(IntStatus now)
+
+"machine/interrupt" -> "machine/interrupt" : void ChangeLevel(IntStatus old, IntStatus now)
+
+' machine/interrupt" -> "machine/interrupt" : void ChangeLevel(IntStatus old, IntStatus now)
+"machine/interrupt" --> "machine/interrupt" : <<ok>>
+
+"machine/interrupt" -> "machine/interrupt" : void OneTick()
+
+"machine/interrupt" -> "machine/interrupt" : void ChangeLevel(IntStatus old, IntStatus now)
+
+' machine/interrupt" -> "machine/interrupt" : void ChangeLevel(IntStatus old, IntStatus now)
+"machine/interrupt" --> "machine/interrupt" : <<ok>>
+
+
+
+"machine/interrupt" -> "machine/interrupt" : bool CheckIfDue(bool advanceClock)
+
+"machine/interrupt" -> "threads/utility" : bool DebugIsEnabled(char flag)
+
+' machine/interrupt" -> "threads/utility" : bool DebugIsEnabled(char flag)
+"threads/utility" --> "machine/interrupt" : <<bool>>
+
+"machine/interrupt" -> "machine/interrupt" : void DumpState()
+
+"machine/interrupt" -> "threads/list" : void Mapcar(VoidFunctionPtr func)
+
+' machine/interrupt" -> "threads/list" : void Mapcar(VoidFunctionPtr func)
+"threads/list" --> "machine/interrupt" : <<ok>>
+
+' machine/interrupt" -> "machine/interrupt" : void DumpState()
+"machine/interrupt" --> "machine/interrupt" : <<ok>>
+
+
+"machine/interrupt" -> "threads/list" : void* SortedRemove(int* keyPtr)
+
+"threads/list" -> "threads/list" : bool IsEmpty()
+
+' threads/list" -> "threads/list" : bool IsEmpty()
+"threads/list" --> "threads/list" : <<bool>>
+
+' machine/interrupt" -> "threads/list" : void* SortedRemove(int* keyPtr)
+"threads/list" --> "machine/interrupt" : <<void* : thread>>
+
+"machine/interrupt" -> "threads/list" : void SortedInsert(vod* item, int sortKey)
+
+"threads/list" -> "threads/list" : bool IsEmpty()
+
+' threads/list" -> "threads/list" : bool IsEmpty()
+"threads/list" --> "threads/list" : <<bool>>
+
+' machine/interrupt" -> "threads/list" : void SortedInsert(vod* item, int sortKey)
+"threads/list" --> "machine/interrupt" : <<ok>>
+
+"machine/interrupt" -> "threads/list" : bool IsEmpty()
+
+' machine/interrupt" -> "threads/list" : bool IsEmpty()
+"threads/list" --> "machine/interrupt" : <<bool>>
+
+"machine/interrupt" -> "threads/list" : void SortedInsert(vod* item, int sortKey)
+
+"threads/list" -> "threads/list" : bool IsEmpty()
+
+' threads/list" -> "threads/list" : bool IsEmpty()
+"threads/list" --> "threads/list" : <<bool>>
+
+' machine/interrupt" -> "threads/list" : void SortedInsert(vod* item, int sortKey)
+"threads/list" --> "machine/interrupt" : <<ok>>
+
+' machine/interrupt" -> "machine/interrupt" : bool CheckIfDue(bool advanceClock)
+"machine/interrupt" --> "machine/interrupt" : <<bool>>
+
+"machine/interrupt" -> "machine/interrupt" : void ChangeLevel(IntStatus old, IntStatus now)
+
+' machine/interrupt" -> "machine/interrupt" : void ChangeLevel(IntStatus old, IntStatus now)
+"machine/interrupt" --> "machine/interrupt" : <<ok>>
+
+"machine/interrupt" -> "threads/thread" : void Yield()
+
+
+
+' machine/interrupt" -> "threads/thread" : void Yield()
+"threads/thread" --> "machine/interrupt" : <<ok>>
+
+' machine/interrupt" -> "machine/interrupt" : void OneTick()
+"machine/interrupt" --> "machine/interrupt" : <<ok>>
+
+' threads/thread" -> "machine/interrupt" : IntStatus SetLevel(IntStatus now)
+"machine/interrupt" --> "threads/thread" : <<IntStatus : LevelOfOld>>
+
+
+' machine/interrupt" -> "threads/thread" : void Yield()
+"threads/thread" --> "machine/interrupt" : <<ok>>
+end
+
+
+
+
+
+' machine/interrupt" -> "machine/interrupt" : void OneTick()
+"machine/interrupt" --> "machine/interrupt" : <<ok>>
+
+' threads/synch" -> "machine/interrupt" : IntStatus SetLevel(IntStatus now)
+"machine/interrupt" --> "threads/synch" : <<IntStatus : LevelOfOld>>
+
+
+' filesys/synchdisk" -> "threads/synch" : void P()
+"threads/synch" --> "filesys/synchdisk" : <<ok>>
+
+"filesys/synchdisk" -> "threads/synch" : void Release()
+
+' filesys/synchdisk" -> "threads/synch" : void Release()
+"threads/synch" --> "filesys/synchdisk" : <<ok>>
+
+
+' filesys/openfile" -> "filesys/synchdisk" : void ReadSector(int sectorNumber, char* data)
+"filesys/synchdisk" --> "filesys/openfile" : <<ok>>
+
+"filesys/openFile" -> "filesys/filehdr" : int ByteToSector(int offset)
+
+' filesys/openFile" -> "filesys/filehdr" : int ByteToSector(int offset)
+"filesys/filehdr" --> "filesys/openfile" : <<int : dataSectors>>
+
+' filesys/directory" -> "filesys/openfile" : int ReadAt(char *into, int numBytes, int position)
+"filesys/openfile" --> "filesys/directory": <<int: number of bytes>>
+
+' filesys/filesys" -> "filesys/directory" : void FetchFrom(OpenFile *file)
+"filesys/directory" --> "filesys/filesys": <<ok>>
+
+"filesys/filesys" -> "filesys/directory" : int Find(char* name)
+
+"filesys/directory" -> "filesys/directory" : int FindIndex(char* name)
+
+' filesys/directory" -> "filesys/directory" : int FindIndex(char* name)
+"filesys/directory" --> "filesys/directory" : <<int : index>>
+
+
+' filesys/filesys" -> "filesys/directory" : int Find(char* name)
+"filesys/directory" --> "filesys/filesys" : <<int : TableSector>>
+
+
+' userprog/progtest" -> "filesys/filesys" : OpenFile * Open(char *name)
+"filesys/filesys" --> "userprog/progtest": <<program file>>
+
+"userprog/progtest" -> "userprog/addrspace" : void InitRegisters()
+
+"userprog/addrspace" -> "machine/machine" : void WriteRegister(int num, int value)
+
+' userprog/addrspace" -> "machine/machine" : void WriteRegister(int num, int value)
+"machine/machine" --> "userprog/addrspace" : <<ok>>
+
+"userprog/addrspace" -> "machine/machine" : void WriteRegister(int num, int value)
+
+' userprog/addrspace" -> "machine/machine" : void WriteRegister(int num, int value)
+"machine/machine" --> "userprog/addrspace" : <<ok>>
+
+"userprog/addrspace" -> "machine/machine" : void WriteRegister(int num, int value)
+
+' userprog/addrspace" -> "machine/machine" : void WriteRegister(int num, int value)
+"machine/machine" --> "userprog/addrspace" : <<ok>>
+
+"userprog/addrspace" -> "machine/machine" : void WriteRegister(int num, int value)
+
+' userprog/addrspace" -> "machine/machine" : void WriteRegister(int num, int value)
+"machine/machine" --> "userprog/addrspace" : <<ok>>
+
+' userprog/progtest" -> "userprog/addrspace" : void InitRegisters()
+"userprog/addrspace" --> "userprog/progtest" : <<ok>>
+
+"userprog/progtest" -> "userprog/addrspace" : void RestoreState()
+
+' userprog/progtest" -> "userprog/addrspace" : void RestoreState()
+"userprog/addrspace" --> "userprog/progtest" : <<ok>>
+
+
+
+
+"userprog/progtest" -> "machine/mipssim" : void Run()
+
+
+"machine/mipssim" -> "threads/utility" : bool DebugIsEnabled(char flag)
+
+' machine/mipssim" -> "threads/utility" : bool DebugIsEnabled(char flag)
+"threads/utility" --> "machine/mipssim" : <<bool>>
+
+"machine/mipssim" -> "threads/thread" : char* getName()
+
+' machine/mipssim" -> "threads/thread" : char* getName()
+"threads/thread" --> "machine/mipssim" : <<char* : threadName>>
+
+"machine/mipssim" -> "threads/thread" : void setStatus(ThreadStatus st)
+
+' machine/mipssim" -> "threads/thread" : void setStatus(ThreadStatus st)
+"threads/thread" --> "machine/mipssim" : <<ok>>
+
+
+
+
+"machine/mipssim" -> "machine/mipssim" : void OneInstruction(Instruction *instr)
+
+"machine/mipssim" -> "machine/translate" : bool ReadMem(int addr, int size, int* value)
+
+' machine/mipssim" -> "machine/translate" : bool ReadMem(int addr, int size, int* value)
+"machine/translate" --> "machine/mipssim" : <<bool>>
+
+' machine/mipssim" -> "machine/mipssim" : void OneInstruction(Instruction *instr)
+"machine/mipssim" --> "machine/mipssim" : <<ok>>
+
+
+"machine/mipssim" -> "machine/interrupt" : void OneTick()
+
+' machine/mipssim" -> "machine/interrupt" : void OneTick()
+"machine/interrupt" --> "machine/mipssim" : <<ok>>
+
+
+"machine/mipssim" -> "machine/machine" : void Debugger()
+
+' machine/mipssim" -> "machine/machine" : void Debugger()
+"machine/machine" --> "machine/mipssim" : <<ok>>
+
+' userprog/progtest" -> "machine/mipssim" : void Run()
+"machine/mipssim" --> "userprog/progtest" : <<ok>>
+
+
+' threads/main" -> "userprog/progtest" : void StartProcess(char *filename)
+"userprog/progtest" --> "threads/main": <<ok>>
+
+@enduml
