@@ -40,7 +40,7 @@
 #include <cstdio>
 #include "copyright.h"
 #include "utility.h"
-#include "synch.h"
+//#include "synch.h"
 
 
 #ifdef USER_PROGRAM
@@ -96,6 +96,8 @@ class Thread {
     int joinValue; // it keeps value for thread's join.
 
     int readyToJoin; // shows that a thread is ready to be deleted.
+
+    int isForked; // boolean for forking threads.
 
     Lock* lock; // lock variable in order to handle joins.
 

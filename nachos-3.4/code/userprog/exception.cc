@@ -25,12 +25,12 @@
 #include "system.h"
 #include "syscall.h"
 #include "Table.h"
-#include "SynchConsole.h"
-#include "Pipe.h"
-#include "../threads/thread.h"
-#include "../machine/sysdep.h"
+//#include "SynchConsole.h"
+//#include "Pipe.h"
+#include "thread.h"
+#include "sysdep.h"
 
-extern Table * TablePtr;
+Table *TablePtr;
 
 
 //----------------------------------------------------------------------

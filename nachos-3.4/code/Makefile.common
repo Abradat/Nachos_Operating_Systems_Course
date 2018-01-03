@@ -49,9 +49,8 @@ THREAD_H =../threads/copyright.h\
 	../machine/sysdep.h\
 	../machine/stats.h\
 	../machine/timer.h\
-	../threads/PriorityQueueScheduler.h\
 	../threads/struct.h\
-	../threads/sjf.h\
+	
 	
 
 THREAD_C =../threads/main.cc\
@@ -67,15 +66,14 @@ THREAD_C =../threads/main.cc\
 	../machine/sysdep.cc\
 	../machine/stats.cc\
 	../machine/timer.cc\
-	../threads/PriorityQueueScheduler.cc\
 	../threads/struct.cc\
-	../threads/sjf.cc\
+	
 	
 
 THREAD_S = ../threads/switch.s
 
 THREAD_O =main.o list.o scheduler.o synch.o synchlist.o system.o thread.o \
-	utility.o threadtest.o interrupt.o stats.o sysdep.o timer.o PriorityQueueScheduler.o struct.o sjf.o 
+	utility.o threadtest.o interrupt.o stats.o sysdep.o timer.o struct.o 
 
 USERPROG_H = ../userprog/addrspace.h\
 	../userprog/bitmap.h\
@@ -84,8 +82,8 @@ USERPROG_H = ../userprog/addrspace.h\
 	../machine/console.h\
 	../machine/machine.h\
 	../machine/mipssim.h\
-	../machine/translate.h
-
+ 	../machine/translate.h\
+        ../userprog/Table.h
 USERPROG_C = ../userprog/addrspace.cc\
 	../userprog/bitmap.cc\
 	../userprog/exception.cc\
@@ -146,3 +144,8 @@ depend: $(CFILES) $(HFILES)
 	echo '# DEPENDENCIES MUST END AT END OF FILE' >> Makefile
 	echo '# IF YOU PUT STUFF HERE IT WILL GO AWAY' >> Makefile
 	echo '# see make depend above' >> Makefile
+
+
+
+
+

@@ -236,6 +236,7 @@ List::SortedRemove(int *keyPtr)
     return thing;
 }
 
+/*
 ListElement* List::find(Thread *threadptr) {
     ListElement* currentElement = first;
     while (currentElement != NULL){
@@ -255,4 +256,4 @@ void List::removeElement(Thread *threadptr){
     par = curr;
     curr = curr->next;
   }
-}
+}*/

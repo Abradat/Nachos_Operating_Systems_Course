@@ -59,9 +59,9 @@ class List {
     void SortedInsert(void *item, int sortKey);	// Put item into list
     void *SortedRemove(int *keyPtr); 	  	// Remove first item from list
 
-    ListElement* find(Thread* threadptr);
+    //ListElement* find(Thread* threadptr);
 
-    void removeElement(Thread* threadptr); //removing specified thread from the list
+    //void removeElement(Thread* threadptr); //removing specified thread from the list
 
   private:
     ListElement *first;  	// Head of the list, NULL if list is empty

@@ -133,7 +133,7 @@ Initialize(int argc, char **argv)
     stats = new Statistics();			// collect statistics
     interrupt = new Interrupt;			// start up interrupt handling
     //scheduler = new Scheduler();		// initialize the ready queue
-    scheduler = new PriorityQueueScheduler(); // priority queue
+
     //scheduler = new sjf();
     // scheduler = new multilev();
 

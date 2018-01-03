@@ -6,7 +6,7 @@
 #define NACHOS_OPERATING_SYSTEMS_COURSE_TABLE_H
 
 #include "synch.h"
-#include "../threads/synch.h"
+//#include "../threads/synch.h"
 
 class Table {
 
