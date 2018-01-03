@@ -61,6 +61,7 @@ void forker(void (*func)()) {
     forkedThread->space = space;//space of forkedThread = allocated space
 
 
+
 }
 
 void
