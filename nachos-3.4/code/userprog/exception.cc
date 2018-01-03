@@ -49,7 +49,11 @@
 //----------------------------------------------------------------------
 
 void forker(void (*func)()) {
-    machine->IncrementPCReg();
+    int funcPtr = (int) (func);
+    if(!currentThread->space->allocateThreadSpace()) {//when we dont have space for allocating
+        return;
+    }
+
 }
 
 void

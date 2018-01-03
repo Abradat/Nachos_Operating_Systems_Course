@@ -23,6 +23,9 @@
 #include <strings.h>
 #endif
 
+
+extern MemoryManager * memoryManager;
+
 //----------------------------------------------------------------------
 // SwapHeader
 // 	Do little endian to big endian conversion on the bytes in the 
@@ -183,4 +186,49 @@ void AddrSpace::RestoreState()
 {
     machine->pageTable = pageTable;
     machine->pageTableSize = numPages;
+}
+
+// allocating more space for Forked thread
+int AddrSpace::allocateThreadSpace()
+{
+    int newPages = divRoundUp(UserStackSize, PageSize);
+
+    TranslationEntry * newTable = new TranslationEntry[numPages + newPages];
+
+    for(unsigned int i = 0; i < numPages; i++) {//old spaces to copy
+        newTable[i] = pageTable[i];
+    }
+
+    int allocpage;
+
+    for (unsigned int i = numPages; i < numPages + newPages; i++) {//when we want to allocate new space
+        newTable[i].virtualPage = i;
+
+        if((allocpage = memoryManager->AllocPage()) == -1) {//if we dont have free space
+            fprintf(stderr, "Could not allocate memory for new thread\n");
+            delete newTable;
+            return 0;
+        }
+        //so we have free space to get
+        newTable[i].physicalPage = allocpage;
+        newTable[i].valid = TRUE;
+        newTable[i].use = FALSE;
+        newTable[i].dirty = FALSE;
+        newTable[i].readOnly = FALSE;  // if the code segment was entirely on
+        // a separate page, we could set its
+        // pages to be read-only
+    }
+
+    delete pageTable;//now we delete old parent table
+    pageTable = newTable;//new table is assigned to parent and child.
+
+    // zero out the entire address space, to zero the unitialized data segment
+    // and the stack segment
+    for(unsigned int i = numPages; i < numPages + newPages; i++) {
+        bzero(machine->mainMemory + (pageTable[i].physicalPage * PageSize), PageSize);
+    }
+
+    numPages = numPages + newPages;
+
+    return 1;
 }

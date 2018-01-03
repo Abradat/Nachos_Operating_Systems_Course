@@ -18,6 +18,34 @@
 
 #define UserStackSize		1024 	// increase this as necessary!
 
+class BitMap;
+class Lock;
+
+class MemoryManager {
+public:
+
+    /* Create a manager to track the allocation of numPages of physical memory.
+     You will create one by calling the constructor with NumPhysPages as
+     the parameter.  All physical pages start as free, unallocated pages. */
+    MemoryManager(int numPages);
+
+    ~MemoryManager();
+
+    /* Allocate a free page, returning its physical page number or -1
+     if there are no free pages available. */
+    int AllocPage();
+
+    /* Free the physical page and make it available for future allocation. */
+    void FreePage(int physPageNum);
+
+    /* True if the physical page is allocated, false otherwise. */
+    bool PageIsAllocated(int physPageNum);
+
+private:
+    Lock * lock;     // For synchronization
+    BitMap * pages;  // keep track of which pages are available
+};
+
 class AddrSpace {
   public:
     AddrSpace(OpenFile *executable);	// Create an address space,
@@ -29,13 +57,16 @@ class AddrSpace {
 					// before jumping to user code
 
     void SaveState();			// Save/restore address space-specific
-    void RestoreState();		// info on a context switch 
+    // for now!
+    int allocateThreadSpace();
 
-  private:
+    void RestoreState();		// info on a context switch
+private:
     TranslationEntry *pageTable;	// Assume linear page table translation
-					// for now!
-    unsigned int numPages;		// Number of pages in the virtual 
+    unsigned int numPages;		// Number of pages in the virtual
+
 					// address space
+
 };
 
 #endif // ADDRSPACE_H
