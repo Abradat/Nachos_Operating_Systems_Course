@@ -243,11 +243,19 @@ List::find(int spaceId, Thread *parent)
     DEBUG('t', "Find\n");
     while(element != NULL)
     {
-        if(((ForkStruct *) element) -> mySpaceId == spaceId  && ((ForkStruct *) element) -> parentThread == parent )
+        bool kir = ((ForkStruct *) element->item) -> mySpaceId == spaceId;
+        if (kir){
+            DEBUG('t', "kiri\n");
+        }
+        DEBUG('t', "Find While %d\n",((ForkStruct *) element->item) -> mySpaceId );
+        if(((ForkStruct *) element->item) -> mySpaceId == spaceId)
         {
+            DEBUG('t', "Raftiiimmm too\n\n\n");
             temp = element;
             break;
         }
+        element = element->next;
     }
+    DEBUG('a', "finished\n");
     return temp;
 }

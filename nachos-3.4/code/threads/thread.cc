@@ -176,15 +176,16 @@ Thread::Yield ()
 {
     Thread *nextThread;
     IntStatus oldLevel = interrupt->SetLevel(IntOff);
-    
     ASSERT(this == currentThread);
-    
+
     DEBUG('t', "Yielding thread \"%s\"\n", getName());
-    
+
     nextThread = scheduler->FindNextToRun();
+    DEBUG('t', "Next thread name : %s", nextThread->getName());
     if (nextThread != NULL) {
-	scheduler->ReadyToRun(this);
-	scheduler->Run(nextThread);
+        DEBUG('t', "tttttttttt\n");
+        scheduler->ReadyToRun(this);
+        scheduler->Run(nextThread);
     }
     (void) interrupt->SetLevel(oldLevel);
 }

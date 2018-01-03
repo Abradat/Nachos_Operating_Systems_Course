@@ -30,6 +30,67 @@
 #include <unistd.h>
 #include <sys/time.h>
 
+
+
+
+unsigned long int time_getter(){
+    struct timeval now;
+    gettimeofday(&now, NULL);
+    unsigned long int miltime =((long)now.tv_sec*1000) + ((int)now.tv_usec/1000);
+    return miltime;
+}
+
+void nextPc(){
+    machine->WriteRegister(PrevPCReg, machine->ReadRegister(PCReg));
+    machine->WriteRegister(PCReg, machine->ReadRegister(NextPCReg));
+    machine->WriteRegister(NextPCReg, machine->ReadRegister(NextPCReg) + 4);
+}
+
+
+void runFunction(int functionPtr){
+    machine->WriteRegister(PCReg, functionPtr);
+    machine->WriteRegister(NextPCReg, functionPtr + 4);
+    machine->Run();
+
+}
+
+void ForkI(void (*func))
+{
+    printf("func: %d\n", (int) func);
+    DEBUG('t', "fork started\n");
+    Thread *newThread = new Thread("Forkeding thread");
+    newThread -> space = currentThread -> space;
+    lastForkedSpaceId = time_getter();
+    barziForkStruct.mySpaceId = lastForkedSpaceId;
+    barziForkStruct.parentThread= currentThread;
+    barziForkStruct.childThread= newThread;
+    nextPc();
+    newThread -> Fork(runFunction, (int)func);
+
+}
+
+
+int JoinI(int  id)
+{
+    DEBUG('a', "Join started: %d\n", id);
+//    ForkStruct *forkedThread = (ForkStruct *)myList -> find(id, currentThread);
+    if (barziForkStruct.childThread->getStatus() != BLOCKED && barziForkStruct.parentThread == currentThread)
+    {
+        DEBUG('a', "Yield in join\n");
+//        printf("in join\n");
+        nextPc();
+        currentThread -> Yield();
+        nextPc();
+        
+    }
+    DEBUG('a', "Join finished\n");
+    //currentThread->Yield();
+    return machine->ReadRegister(4);
+
+}
+
+
+
 //----------------------------------------------------------------------
 // ExceptionHandler
 // 	Entry point into the Nachos kernel.  Called when a user program
@@ -63,53 +124,24 @@ ExceptionHandler(ExceptionType which)
    	interrupt->Halt();
     } 
 	else if((which == SyscallException) && (type == SC_Fork)){
-	DEBUG('a', "Shutdown, Fork.\n");
-	        interrupt->Halt();
-}
-else if((which == SyscallException) && (type == SC_Fork)){
-		DEBUG('a', "Shutdown, Join.\n");
-	        interrupt->Halt();
-}
-else if((which == SyscallException) && (type == SC_Exit)){
+	    DEBUG('a', "Shutdown, Fork.\n");
+        ForkI((void (*))(machine->ReadRegister(4)));
+    }
+    else if((which == SyscallException) && (type == SC_Join)){
+        DEBUG('a', "Shutdown, Join.\n");
+	    JoinI(lastForkedSpaceId);
+    }
+    else if((which == SyscallException) && (type == SC_Exit)){
         interrupt->Halt();
     }
-else {
-	printf("Unexpected user mode exception %d %d\n", which, type);
-	ASSERT(FALSE);
+    else if((which == SyscallException) && (type == SC_Yield)){
+        nextPc();
+        currentThread->Yield();
+    }
+    else {
+	    printf("Unexpected user mode exception %d %d\n", which, type);
+	    ASSERT(FALSE);
     }
 }
 
-
-unsigned long int time_getter(){
-    struct timeval now;
-    gettimeofday(&now, NULL);
-    unsigned long int miltime =((long)now.tv_sec*1000) + ((int)now.tv_usec/1000);
-    return miltime;
-}
-
-void Fork(void (*func)())
-{
-    printf("Fork Fork Fork\n");
-	Thread *newThread = new Thread("Forkeding thread");
-//    DEBUG('t', "fork started");
-    newThread -> space = currentThread -> space;
-	newThread -> Fork(reinterpret_cast<VoidFunctionPtr>(func), 3);
-
-	lastForkedSpaceId = time_getter();
-	ForkStruct myForkStruct = {.parentThread = currentThread, .childThread = newThread, .mySpaceId = lastForkedSpaceId};
-	myList -> Append(&myForkStruct);
-
-}
-
-int Join(SpaceId id)
-{
-	 ForkStruct *forkedThread = (ForkStruct *)myList -> find(id, currentThread);
-	 while(forkedThread -> childThread->getStatus() != BLOCKED )
-	 {
-         currentThread -> Yield();
-	 }
-	 DEBUG('t', "Join valud", machine->ReadRegister(4));
-	 return machine->ReadRegister(4);
-
-}
 

@@ -20,8 +20,8 @@ Timer *timer;				// the hardware timer device,
 					// for invoking context switches
 
 int lastForkedSpaceId;
-List *myList = new List();
-
+//List *myList = new List();
+ForkStruct barziForkStruct;
 
 #ifdef FILESYS_NEEDED
 FileSystem  *fileSystem;

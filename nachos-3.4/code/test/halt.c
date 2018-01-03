@@ -11,27 +11,44 @@
  */
 
 #include "syscall.h"
-SpaceId lastForkedSpaceId;
+int lastForkedSpaceId;
 void fork1()
 {
 	int cnt;
-	for(cnt = 1; cnt <= 1000; cnt++)
+	for(cnt = 0; cnt < 1; cnt++)
 	{
 	}
-	Exit(0);
+//	Exit(0);
 }
 
 void fork2(){
     int i;
-    for(i = 0; i < 100; i++){
+    for(i = 0; i < 1; i++){
 
     }
-    Exit(100);
+    return;
+   // Exit(100);
+}
+
+void fork3(){
+    int i;
+    for(i = 0; i <1; i++){
+
+    }
 }
 
 main(){
 	Fork(fork1);
-	Join(lastForkedSpaceId);
+    Join(lastForkedSpaceId);
     Fork(fork2);
     Join(lastForkedSpaceId);
+    Fork(fork3);
+    Join(lastForkedSpaceId);
+    Fork(fork1);
+    Join(lastForkedSpaceId);
+    Fork(fork1);
+    Join(lastForkedSpaceId);
+    Fork(fork3);
+    Join(lastForkedSpaceId);
+
 }

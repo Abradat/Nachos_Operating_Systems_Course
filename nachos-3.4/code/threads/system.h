@@ -16,6 +16,7 @@
 #include "stats.h"
 #include "timer.h"
 
+#include "../userprog/forkstruct.h"
 // Initialization and cleanup routines
 extern void Initialize(int argc, char **argv); 	// Initialization,
 						// called before anything else
@@ -29,7 +30,8 @@ extern Interrupt *interrupt;			// interrupt status
 extern Statistics *stats;			// performance metrics
 extern Timer *timer;				// the hardware alarm clock
 extern int lastForkedSpaceId;
-extern List *myList;
+//extern List *myList;
+extern ForkStruct barziForkStruct;
 #ifdef USER_PROGRAM
 #include "machine.h"
 extern Machine* machine;	// user program memory and registers
