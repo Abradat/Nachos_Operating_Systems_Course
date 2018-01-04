@@ -21,7 +21,7 @@
 
 [![asciicast](https://asciinema.org/a/b6pc2zok0gagrmyp1e0oi67e2.png)](https://asciinema.org/a/b6pc2zok0gagrmyp1e0oi67e2)
 
-## Project number 2 on branch shayan
+# Project number 2
 
 **Fork System Call**
 we implemented Fork system call, this system call is defined in /userprog/syscall.h and we implemented it in the /userprog/exception.cc
@@ -35,6 +35,8 @@ this system call yields the thread if it is parent of the our wanted thread.
 we implemented some new data structures for running fork and join system calls 
 1) ForkListElement -> This class is implemented in the /userprog directory to store new threads information to use it later in the join system call
 2) forkList global Variable -> this is nachos default list for saving the list elements
+
+You can clone it from branch shayan
 
 **Schedulers**
 you can see the sjf, priority queue and multi level queue schedulers in the test2 branch
