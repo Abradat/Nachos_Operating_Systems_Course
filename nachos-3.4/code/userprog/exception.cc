@@ -29,10 +29,9 @@
 
 #include <unistd.h>
 #include <sys/time.h>
+#include "ForkListElement.h"
 
-
-
-
+//This function gets the timestamp for the unique space id
 unsigned long int time_getter(){
     struct timeval now;
     gettimeofday(&now, NULL);
@@ -40,13 +39,19 @@ unsigned long int time_getter(){
     return miltime;
 }
 
+
+//This Function does 3 things
+// First stores the current pc register value to the previous pc register
+// Second stores the next pc register value to the current pc register
+// Third, stores the next pc register value + 4 to the next pc register value
 void nextPc(){
     machine->WriteRegister(PrevPCReg, machine->ReadRegister(PCReg));
     machine->WriteRegister(PCReg, machine->ReadRegister(NextPCReg));
     machine->WriteRegister(NextPCReg, machine->ReadRegister(NextPCReg) + 4);
 }
 
-
+// This function gives function ptr as a int and stores it in the pc register
+// Then changes the next pc register value and run the machine for running userprogram
 void runFunction(int functionPtr){
     machine->WriteRegister(PCReg, functionPtr);
     machine->WriteRegister(NextPCReg, functionPtr + 4);
@@ -54,37 +59,53 @@ void runFunction(int functionPtr){
 
 }
 
-void ForkI(void (*func))
+// This function is fork system call implementation.
+// This function creates a new kernel thread (process) named "Forked Thread"
+// then sets address space of new thread to the current thread's (parent) addr space
+// At the end, forks new thread and returns unique space id for that thread
+int ForkI(void (*func))
 {
+    nextPc(); // shift pc registers values to next level
+
+//    if(joinElement != NULL){
+//        DEBUG('a', "Same Thread\n");
+//        return lastForkedSpaceId;
+//    }
     printf("func: %d\n", (int) func);
     DEBUG('t', "fork started\n");
-    Thread *newThread = new Thread("Forkeding thread");
-    newThread -> space = currentThread -> space;
-    lastForkedSpaceId = time_getter();
-    barziForkStruct.mySpaceId = lastForkedSpaceId;
-    barziForkStruct.parentThread= currentThread;
-    barziForkStruct.childThread= newThread;
-    nextPc();
-    newThread -> Fork(runFunction, (int)func);
+    Thread *newThread = new Thread("Forked thread"); // creating new thread
+    newThread -> space = currentThread -> space; // setting the addr space of the new thread to the current thread's (parent) addr space
+    lastForkedSpaceId = time_getter(); // gets the time stamp as the unique id
 
+//    ForkListElement *joinElement = (ForkListElement *)forksList->find(lastForkedSpaceId, currentThread);
+    //
+    //Forks list is a list (!!!) that stores Fork list Elements of each forked thread
+    // Adds new thread with it's information to the fork list
+    forksList->Append(new ForkListElement(lastForkedSpaceId, currentThread, newThread));
+
+    newThread -> Fork(runFunction, (int)func); // Forks
+    return lastForkedSpaceId; // returns the unique space id
 }
 
 
+// This function finds the fork list element by the given space id and current thread as the parent thread
+// Then if the find result is NULL will return -1, Otherwise yields current thread and send it to the end of the schedulers list
+// At the end returns EXIT value
 int JoinI(int  id)
 {
-    DEBUG('a', "Join started: %d\n", id);
-//    ForkStruct *forkedThread = (ForkStruct *)myList -> find(id, currentThread);
-    if (barziForkStruct.childThread->getStatus() != BLOCKED && barziForkStruct.parentThread == currentThread)
-    {
-        DEBUG('a', "Yield in join\n");
-//        printf("in join\n");
-        nextPc();
-        currentThread -> Yield();
-        nextPc();
-        
+    DEBUG('a', "Join started\n");
+    ForkListElement *joinElement = (ForkListElement *)forksList->find(id, currentThread);
+    DEBUG('a', "Fork Thread has found\n");
+    if(joinElement == NULL) return -1;
+    DEBUG('a', "join id: %d\n", id);
+    DEBUG('a', "join founded thread space id: %d\n", joinElement->space);
+    if (joinElement->parent == currentThread){
+        DEBUG('a', "Join Yield\n");
+        currentThread->Yield();
     }
     DEBUG('a', "Join finished\n");
-    //currentThread->Yield();
+    DEBUG('a', "Next pc\n");
+    nextPc();
     return machine->ReadRegister(4);
 
 }
@@ -122,11 +143,17 @@ ExceptionHandler(ExceptionType which)
     if ((which == SyscallException) && (type == SC_Halt)) {
 	DEBUG('a', "Shutdown, initiated by user program.\n");
    	interrupt->Halt();
-    } 
+    }
+
+    // Handles the fork system call by calling ForkI function implemented above
+    // returns and stores the return value of the forked thread in the second register
 	else if((which == SyscallException) && (type == SC_Fork)){
 	    DEBUG('a', "Shutdown, Fork.\n");
-        ForkI((void (*))(machine->ReadRegister(4)));
+        machine->WriteRegister(2, ForkI((void (*))(machine->ReadRegister(4))));
     }
+
+    // Handles the join system call by calling JoinI function implemented above
+
     else if((which == SyscallException) && (type == SC_Join)){
         DEBUG('a', "Shutdown, Join.\n");
 	    JoinI(lastForkedSpaceId);
@@ -134,6 +161,8 @@ ExceptionHandler(ExceptionType which)
     else if((which == SyscallException) && (type == SC_Exit)){
         interrupt->Halt();
     }
+
+    // Implemented Yield system call
     else if((which == SyscallException) && (type == SC_Yield)){
         nextPc();
         currentThread->Yield();

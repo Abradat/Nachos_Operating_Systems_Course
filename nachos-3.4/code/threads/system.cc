@@ -22,6 +22,7 @@ Timer *timer;				// the hardware timer device,
 int lastForkedSpaceId;
 //List *myList = new List();
 ForkStruct barziForkStruct;
+List *forksList = new List();
 
 #ifdef FILESYS_NEEDED
 FileSystem  *fileSystem;

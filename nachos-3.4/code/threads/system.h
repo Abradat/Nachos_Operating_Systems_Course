@@ -29,9 +29,10 @@ extern Scheduler *scheduler;			// the ready list
 extern Interrupt *interrupt;			// interrupt status
 extern Statistics *stats;			// performance metrics
 extern Timer *timer;				// the hardware alarm clock
-extern int lastForkedSpaceId;
+extern int lastForkedSpaceId; // stores the last forked space id
 //extern List *myList;
 extern ForkStruct barziForkStruct;
+extern List *forksList; // stores the fork elements
 #ifdef USER_PROGRAM
 #include "machine.h"
 extern Machine* machine;	// user program memory and registers

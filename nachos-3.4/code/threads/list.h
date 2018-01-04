@@ -15,7 +15,7 @@
 
 #include "copyright.h"
 #include "utility.h"
-#include "../userprog/forkstruct.h"
+#include "../userprog/ForkListElement.h"
 // The following class defines a "list element" -- which is
 // used to keep track of one item on a list.  It is equivalent to a
 // LISP cell, with a "car" ("next") pointing to the next element on the list,
@@ -59,6 +59,8 @@ class List {
     void *SortedRemove(int *keyPtr); 	  	// Remove first item from list
 
     void *find(int spaceId, Thread *parent);
+
+    void Append(int spaceId, Thread* parent, Thread* child);
 
 
 

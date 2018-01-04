@@ -12,13 +12,15 @@
 
 #include "syscall.h"
 int lastForkedSpaceId;
+
+// Implemented fork test functions
 void fork1()
 {
 	int cnt;
 	for(cnt = 0; cnt < 1; cnt++)
 	{
 	}
-//	Exit(0);
+//    Yield();
 }
 
 void fork2(){
@@ -26,8 +28,7 @@ void fork2(){
     for(i = 0; i < 1; i++){
 
     }
-    return;
-   // Exit(100);
+//    Yield();
 }
 
 void fork3(){
@@ -35,20 +36,18 @@ void fork3(){
     for(i = 0; i <1; i++){
 
     }
+//    Yield();
 }
 
 main(){
-	Fork(fork1);
-    Join(lastForkedSpaceId);
-    Fork(fork2);
-    Join(lastForkedSpaceId);
-    Fork(fork3);
-    Join(lastForkedSpaceId);
-    Fork(fork1);
-    Join(lastForkedSpaceId);
-    Fork(fork1);
-    Join(lastForkedSpaceId);
-    Fork(fork3);
-    Join(lastForkedSpaceId);
-
+    int f;
+	f = Fork(fork1);
+//    Join(f);
+    f = Fork(fork2);
+    f = Fork(fork2);
+    f = Fork(fork2);
+    f = Fork(fork2);
+    f = Fork(fork2);
+//    Join(f);
+//    Fork(fork2);
 }

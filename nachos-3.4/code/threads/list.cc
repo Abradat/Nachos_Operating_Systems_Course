@@ -240,15 +240,13 @@ List::find(int spaceId, Thread *parent)
 {
     ListElement *element = first;
     ListElement *temp = NULL;
+    ForkListElement* currentElement = NULL;
     DEBUG('t', "Find\n");
     while(element != NULL)
     {
-        bool kir = ((ForkStruct *) element->item) -> mySpaceId == spaceId;
-        if (kir){
-            DEBUG('t', "kiri\n");
-        }
-        DEBUG('t', "Find While %d\n",((ForkStruct *) element->item) -> mySpaceId );
-        if(((ForkStruct *) element->item) -> mySpaceId == spaceId)
+        currentElement = (ForkListElement*) element->item;
+        DEBUG('t', "Find While %d\n",currentElement -> space);
+        if(currentElement -> space== spaceId && currentElement->parent == parent)
         {
             DEBUG('t', "Raftiiimmm too\n\n\n");
             temp = element;
@@ -257,5 +255,5 @@ List::find(int spaceId, Thread *parent)
         element = element->next;
     }
     DEBUG('a', "finished\n");
-    return temp;
+    return currentElement;
 }
