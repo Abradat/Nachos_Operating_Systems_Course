@@ -21,3 +21,20 @@
 
 [![asciicast](https://asciinema.org/a/b6pc2zok0gagrmyp1e0oi67e2.png)](https://asciinema.org/a/b6pc2zok0gagrmyp1e0oi67e2)
 
+##Project number 2 on branch shayan##
+
+**Fork System Call**
+we implemented Fork system call, this system call is defined in /userprog/syscall.h and we implemented it in the /userprog/exception.cc
+we changed the return value of the default fork systemcall from void ptr to int to assign a unique value or space id to the new fork threads to handle it later for the join system call
+
+**Join System Call**
+we implemented Join system call, this system call is defined in /userprog/syscall.h and we implemented it in the /userprog/exception.cc
+this system call yields the thread if it is parent of the our wanted thread.
+
+**New Data Structures**
+we implemented some new data structures for running fork and join system calls 
+1) ForkListElement -> This class is implemented in the /userprog directory to store new threads information to use it later in the join system call
+2) forkList global Variable -> this is nachos default list for saving the list elements
+
+**Schedulers**
+you can see the sjf, priority queue and multi level queue schedulers in the test2 branch
