@@ -21,22 +21,28 @@
 
 [![asciicast](https://asciinema.org/a/b6pc2zok0gagrmyp1e0oi67e2.png)](https://asciinema.org/a/b6pc2zok0gagrmyp1e0oi67e2)
 
+# Sequence Diagram
+we added sequence diagram of running a userprogram in the nachos. You can see the result in the ```sequence diagram``` directory. Also if you want to make a change in style or flow, you can change ```sequence``` file. For creating diagram from ```sequence``` file to a png file, you should use ```Pluntuml```. More information about ```Pluntuml``` you can see [this link](http://plantuml.com/). For converting sequence file to the png file you should use some command like this:
+
+```java -DPLANTUML_LIMIT_SIZE=12288 -jar plantuml.jar sequence```
+
+
 # Project number 2
 
-**Fork System Call**
+* **Fork System Call**
 we implemented Fork system call, this system call is defined in /userprog/syscall.h and we implemented it in the /userprog/exception.cc
 we changed the return value of the default fork systemcall from void ptr to int to assign a unique value or space id to the new fork threads to handle it later for the join system call
 
-**Join System Call**
+* **Join System Call**
 we implemented Join system call, this system call is defined in /userprog/syscall.h and we implemented it in the /userprog/exception.cc
 this system call yields the thread if it is parent of the our wanted thread.
 
-**New Data Structures**
+* **New Data Structures**
 we implemented some new data structures for running fork and join system calls 
 1) ForkListElement -> This class is implemented in the /userprog directory to store new threads information to use it later in the join system call
 2) forkList global Variable -> this is nachos default list for saving the list elements
 
 You can clone it from branch shayan
 
-**Schedulers**
+* **Schedulers**
 you can see the sjf, priority queue and multi level queue schedulers in the test2 branch
